@@ -1,0 +1,10 @@
+{
+  "name": "Squiggle",
+  "id": "1111296358644076867",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "ui": "ui.html"
+}

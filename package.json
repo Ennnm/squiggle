@@ -1,15 +1,36 @@
 {
-  "name": "Squiggle",
-  "version": "1.0.0",
-  "description": "Your Figma Plugin",
-  "main": "code.js",
-  "scripts": {
-    "build": "tsc -p tsconfig.json"
+  "dependencies": {
+    "@create-figma-plugin/ui": "^1.9.2",
+    "@create-figma-plugin/utilities": "^1.9.2",
+    "dotenv": "^16.0.1",
+    "firebase": "^9.8.1",
+    "firebase-tools": "^11.0.1",
+    "preact": "^10",
+    "prismjs": "^1.25.0",
+    "react-simple-code-editor": "^0.11.0",
+    "uuid": "^8.3.2"
   },
-  "author": "",
-  "license": "",
   "devDependencies": {
-    "@figma/plugin-typings": "^1.47.0",
-    "typescript": "*"
+    "@create-figma-plugin/build": "^1.9.2",
+    "@create-figma-plugin/tsconfig": "^1.9.2",
+    "@figma/plugin-typings": "1.45.0",
+    "@types/prismjs": "^1.16.6",
+    "@types/react": "^16",
+    "@types/uuid": "^8.3.4",
+    "react": "^16",
+    "typescript": "^4"
+  },
+  "scripts": {
+    "build": "build-figma-plugin --typecheck --minify",
+    "watch": "build-figma-plugin --typecheck --watch"
+  },
+  "figma-plugin": {
+    "editorType": [
+      "figma"
+    ],
+    "id": "squiggle",
+    "name": "Squiggle",
+    "main": "src/main.ts",
+    "ui": "src/ui.tsx"
   }
 }

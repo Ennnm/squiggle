@@ -12,9 +12,22 @@ export const AcceptedFileTypes = function () {
         const file = files[0]
         const imageUuid = uuidv4()
         const imageRef = ref(storage, `images/${imageUuid}.jpg`)
+        
+        // upload image to firebase (to access storage/firestore/firebase functions) from figma
         uploadBytes(imageRef, file).then((snapshot) => {
             console.log('uploaded a blob or file!')
         })
+
+        /** BACKEND (first, need to create cloud project using Squig Ward - cloud run/computer run ) */
+        // ** detect the uploaded image from firebase (https://firebase.google.com/docs/functions/gcp-storage-events)
+        // ** feed image into TFJS model (not priority)
+        // get class, bbox, prediction score json data
+        // ** update firestore 
+
+        /** FRONTEND */
+        // ** upon updating firestore on BE, onSnapshot will get prediction data (https://firebase.google.com/docs/firestore/query-data/listen)
+        // How to update firestore? Reference jia en's code: https://github.com/Ennnm/succinct-cut-cloudfunc/blob/master/functions/index.js
+        // ** parse prediction data to draw ui on figma (scary!) follow https://github.com/brianlovin/figma-dominant-color-toolkit
 
     }
     return (

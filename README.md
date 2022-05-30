@@ -1,4 +1,8 @@
-# React Editor
+## Squiggle
+Turn sketches into high-fidelity wireframes.
+
+This is the frontend repo. Backend repo can be found [here](https://github.com/jjiajun/squiggle-backend).
+
 
 ## Development guide
 

@@ -3,7 +3,7 @@
     "@create-figma-plugin/ui": "^1.9.2",
     "@create-figma-plugin/utilities": "^1.9.2",
     "dotenv": "^16.0.1",
-    "firebase": "^9.8.1",
+    "firebase": "^9.8.2",
     "firebase-tools": "^11.0.1",
     "preact": "^10",
     "prismjs": "^1.25.0",

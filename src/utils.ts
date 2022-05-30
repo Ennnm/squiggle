@@ -3,7 +3,7 @@ import { RGB } from './colors'
 export interface PredictionDataInterface {
   boundingBoxData: number[];
   classType: number;
-  scores: number[];
+  scores: number;
   originalImageSize: number[]
 }
 
@@ -20,6 +20,7 @@ export const classMap:any = {
     10: {name: "Divider", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
     11: {name: "Input Field", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
     12: {name: "Ahref", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
+    13: {name: "Background Frame", color: {r: 1, g: 1, b: 1}}, 
   }
 
 // function isTextNode(node): boolean {

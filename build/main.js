@@ -1,1 +1,173 @@
-(()=>{var s=Object.defineProperty;var C=Object.getOwnPropertyDescriptor;var _=Object.getOwnPropertyNames;var w=Object.prototype.hasOwnProperty;var a=(o,e)=>()=>(o&&(e=o(o=0)),e);var v=(o,e)=>{for(var r in e)s(o,r,{get:e[r],enumerable:!0})},B=(o,e,r,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let t of _(e))!w.call(o,t)&&t!==r&&s(o,t,{get:()=>e[t],enumerable:!(n=C(e,t))||n.enumerable});return o};var P=o=>B(s({},"__esModule",{value:!0}),o);function g(o,e){let r=`${l}`;return l+=1,i[r]={handler:e,name:o},function(){delete i[r]}}function c(o,e){let r=!1;return g(o,function(...n){r!==!0&&(r=!0,e(...n))})}function u(o,e){for(let r in i)i[r].name===o&&i[r].handler.apply(null,e)}var i,l,x=a(()=>{i={},l=0;typeof window=="undefined"?figma.ui.onmessage=function([o,...e]){u(o,e)}:window.onmessage=function(o){let[e,...r]=o.data.pluginMessage;u(e,r)}});async function d(o){let e={};for(let r of o)switch(r.type){case"CONNECTOR":case"SHAPE_WITH_TEXT":case"STICKY":{h(r.text,e);break}case"TEXT":{h(r,e);break}}await Promise.all(Object.values(e).map(function(r){return figma.loadFontAsync(r)}))}function h(o,e){let r=o.characters.length;if(r===0){let t=o.fontName,m=y(t);if(m in e)return;e[m]=t;return}let n=-1;for(;++n<r;){let t=o.getRangeFontName(n,n+1),m=y(t);m in e||(e[m]=t)}}function y(o){return`${o.family}-${o.style}`}var M=a(()=>{});function f(o,e){if(typeof __html__=="undefined")throw new Error("No UI defined");let r=`<div id="create-figma-plugin"></div><script>document.body.classList.add('theme-${figma.editorType}');const __FIGMA_COMMAND__='${typeof figma.command=="undefined"?"":figma.command}';const __SHOW_UI_DATA__=${JSON.stringify(typeof e=="undefined"?{}:e)};${__html__}<\/script>`;figma.showUI(r,o)}var b=a(()=>{});var I=a(()=>{x();M();b()});var p,N=a(()=>{p={1:{name:"Button",color:{r:Math.random(),g:Math.random(),b:Math.random()}},2:{name:"Image",color:{r:Math.random(),g:Math.random(),b:Math.random()}},3:{name:"Navbar",color:{r:Math.random(),g:Math.random(),b:Math.random()}},4:{name:"Text",color:{r:Math.random(),g:Math.random(),b:Math.random()}},5:{name:"H1",color:{r:Math.random(),g:Math.random(),b:Math.random()}},6:{name:"Paragraph",color:{r:Math.random(),g:Math.random(),b:Math.random()}},7:{name:"User Profile",color:{r:Math.random(),g:Math.random(),b:Math.random()}},8:{name:"Checkbox",color:{r:Math.random(),g:Math.random(),b:Math.random()}},9:{name:"Video",color:{r:Math.random(),g:Math.random(),b:Math.random()}},10:{name:"Divider",color:{r:Math.random(),g:Math.random(),b:Math.random()}},11:{name:"Input Field",color:{r:Math.random(),g:Math.random(),b:Math.random()}},12:{name:"Ahref",color:{r:Math.random(),g:Math.random(),b:Math.random()}}}});async function D(o){let{boundingBoxData:e,classType:r,originalImageSize:n}=o,t=figma.createFrame();return t.resize(n[1]*(e[3]-e[1]),n[0]*(e[2]-e[0])),t.x=e[1]*n[1],t.y=e[0]*n[0],t.backgrounds=[],t.fills=[{type:"SOLID",color:p[r].color,opacity:.4}],t.effects=[],t.name=p[r].name,t.clipsContent=!1,Promise.resolve(t)}var S=a(()=>{N()});var T={};v(T,{default:()=>E});function E(){c("INSERT_CODE",async function(e){let r=figma.createText();await d([r]),r.characters=e,figma.closePlugin()});async function o(){let e=O.predictionData;return new Promise(r=>{async function n(){e.forEach(async t=>{await D(t)})}return n(),Promise.resolve()})}f({width:320,height:240}),o()}var U,O,A=a(()=>{I();S();U='{"predictionData": [{"boundingBoxData": [0.38072896003723145, 0.6905229091644287, 0.5150967836380005, 0.8514686822891235], "classType": 2, "scores": 0.99987197, "originalImageSize": [1188, 864]}, {"boundingBoxData": [0.6248313784599304, 0.2969505488872528, 0.6723523736000061, 0.47123590111732483], "classType": 1, "scores": 0.9997974, "originalImageSize": [1188, 864]}, {"boundingBoxData": [0.3608032763004303, 0.1245875209569931, 0.5731380581855774, 0.6217753887176514], "classType": 4, "scores": 0.9319813, "originalImageSize": [1188, 864]}, {"boundingBoxData": [0.3536428213119507, 0.16401392221450806, 0.3809615969657898, 0.47538936138153076], "classType": 4, "scores": 0.916432, "originalImageSize": [1188, 864]}, {"boundingBoxData": [0.2463640719652176, 0.2961253523826599, 0.2818011939525604, 0.611268937587738], "classType": 5, "scores": 0.8986228, "originalImageSize": [1188, 864]}]}',O=JSON.parse(U)});var F={"src/main.ts--default":(A(),P(T)).default},H="src/main.ts--default";F[H]();})();
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __esm = (fn, res) => function __init() {
+    return fn && (res = (0, fn[__getOwnPropNames(fn)[0]])(fn = 0)), res;
+  };
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // node_modules/@create-figma-plugin/utilities/lib/events.js
+  function on(name, handler) {
+    const id = `${currentId}`;
+    currentId += 1;
+    eventHandlers[id] = { handler, name };
+    return function() {
+      delete eventHandlers[id];
+    };
+  }
+  function once(name, handler) {
+    let done = false;
+    return on(name, function(...args) {
+      if (done === true) {
+        return;
+      }
+      done = true;
+      handler(...args);
+    });
+  }
+  function invokeEventHandler(name, args) {
+    for (const id in eventHandlers) {
+      if (eventHandlers[id].name === name) {
+        eventHandlers[id].handler.apply(null, args);
+      }
+    }
+  }
+  var eventHandlers, currentId;
+  var init_events = __esm({
+    "node_modules/@create-figma-plugin/utilities/lib/events.js"() {
+      eventHandlers = {};
+      currentId = 0;
+      if (typeof window === "undefined") {
+        figma.ui.onmessage = function([name, ...args]) {
+          invokeEventHandler(name, args);
+        };
+      } else {
+        window.onmessage = function(event) {
+          const [name, ...args] = event.data.pluginMessage;
+          invokeEventHandler(name, args);
+        };
+      }
+    }
+  });
+
+  // node_modules/@create-figma-plugin/utilities/lib/ui.js
+  function showUI(options, data) {
+    if (typeof __html__ === "undefined") {
+      throw new Error("No UI defined");
+    }
+    const html = `<div id="create-figma-plugin"></div><script>document.body.classList.add('theme-${figma.editorType}');const __FIGMA_COMMAND__='${typeof figma.command === "undefined" ? "" : figma.command}';const __SHOW_UI_DATA__=${JSON.stringify(typeof data === "undefined" ? {} : data)};${__html__}<\/script>`;
+    figma.showUI(html, options);
+  }
+  var init_ui = __esm({
+    "node_modules/@create-figma-plugin/utilities/lib/ui.js"() {
+    }
+  });
+
+  // node_modules/@create-figma-plugin/utilities/lib/index.js
+  var init_lib = __esm({
+    "node_modules/@create-figma-plugin/utilities/lib/index.js"() {
+      init_events();
+      init_ui();
+    }
+  });
+
+  // src/utils.ts
+  var classMap;
+  var init_utils = __esm({
+    "src/utils.ts"() {
+      classMap = {
+        1: { name: "Button", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        2: { name: "Image", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        3: { name: "Navbar", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        4: { name: "Text", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        5: { name: "H1", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        6: { name: "Paragraph", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        7: { name: "User Profile", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        8: { name: "Checkbox", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        9: { name: "Video", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        10: { name: "Divider", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        11: { name: "Input Field", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        12: { name: "Ahref", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
+        13: { name: "Background Frame", color: { r: 1, g: 1, b: 1 } }
+      };
+    }
+  });
+
+  // src/canvas.ts
+  async function generateFrame(data) {
+    const { boundingBoxData, classType, originalImageSize } = data;
+    const frame = figma.createFrame();
+    frame.resize(originalImageSize[1] * (boundingBoxData[3] - boundingBoxData[1]), originalImageSize[0] * (boundingBoxData[2] - boundingBoxData[0]));
+    frame.x = boundingBoxData[1] * originalImageSize[1];
+    frame.y = boundingBoxData[0] * originalImageSize[0];
+    frame.backgrounds = [];
+    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
+    frame.effects = [];
+    frame.name = classMap[classType].name;
+    frame.clipsContent = false;
+    return Promise.resolve(frame);
+  }
+  var init_canvas = __esm({
+    "src/canvas.ts"() {
+      init_utils();
+    }
+  });
+
+  // src/main.ts
+  var main_exports = {};
+  __export(main_exports, {
+    default: () => main_default
+  });
+  function main_default() {
+    once("SUBMIT", async function(predictionData) {
+      async function renderElementsOnScreen() {
+        const data = predictionData.predictionData;
+        const whiteBackgroundFrameData = {
+          "boundingBoxData": [0, 0, 1, 1],
+          "classType": 13,
+          "scores": 1,
+          "originalImageSize": []
+        };
+        whiteBackgroundFrameData.originalImageSize = data[0].originalImageSize;
+        data.unshift(whiteBackgroundFrameData);
+        return new Promise((res) => {
+          async function asyncGenerateFrames() {
+            data.forEach(async (oneFrameData) => {
+              await generateFrame(oneFrameData);
+            });
+          }
+          asyncGenerateFrames();
+          return Promise.resolve();
+        });
+      }
+      renderElementsOnScreen();
+      figma.closePlugin();
+    });
+    showUI({ width: 320, height: 240 });
+  }
+  var init_main = __esm({
+    "src/main.ts"() {
+      init_lib();
+      init_canvas();
+    }
+  });
+
+  // <stdin>
+  var modules = { "src/main.ts--default": (init_main(), __toCommonJS(main_exports))["default"] };
+  var commandId = true ? "src/main.ts--default" : figma.command;
+  modules[commandId]();
+})();

@@ -19,7 +19,9 @@ export const AcceptedFileTypes = function () {
         })
 
         /** BACKEND (first, need to create cloud project using Squig Ward - cloud run/computer run ) */
-        // ** detect the uploaded image from firebase (https://firebase.google.com/docs/functions/gcp-storage-events)
+        // ** detect the uploaded image from firebase 
+            // https://firebase.google.com/docs/functions/gcp-storage-events
+            // https://firebase.google.com/docs/storage/web/upload-files
         // ** feed image into TFJS model (not priority)
         // get class, bbox, prediction score json data
         // ** update firestore 

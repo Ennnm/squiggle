@@ -31,6 +31,7 @@ export default function () {
         return Promise.resolve()
       })
     }
+    
     renderElementsOnScreen()
     // const text = figma.createText()
     // await loadFontsAsync([text])

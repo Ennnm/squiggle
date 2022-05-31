@@ -5,7 +5,7 @@
 </div>
 
 </br>
-This is the frontend repo. Backend repo can be found [here](https://github.com/jjiajun/squiggle-backend).
+This is the frontend repo. Backend repo can be found here: https://github.com/jjiajun/squiggle-backend
 
 ## About the Project
 As our physical world grows increasingly entangled with the digital universe, the ability to create and innovate on the technological plane grows increasingly crucial. To build anything meaningful, one requires adequate skill with code. However, the time investment to achieve this level of mastery is prohibitively high, and many of us simply do not have the time or energy to dedicate ourselves to learning to code.

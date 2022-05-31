@@ -1,6 +1,10 @@
 ## Squiggle
-Turn sketches into high-fidelity wireframes.
 
+<div align="center">
+  <img width="600" src="https://user-images.githubusercontent.com/90031266/171200353-fa696ceb-a83c-456d-824e-d03f2f027922.png" />
+</div>
+
+</br>
 This is the frontend repo. Backend repo can be found [here](https://github.com/jjiajun/squiggle-backend).
 
 ## About the Project
@@ -15,9 +19,8 @@ To democratise digital creation, and allow for a creator movement that even non-
 
 2. When we were training the Machine Learning model, we used augmentations ranging from horizontal and vertical flips, gaussian blur, zoom and crop to contrast and cutout. These augmentations increased model robustness to different variations of hand-drawn wireframes which helped us achieve Classification Loss at 0.2 and Localization Loss at 0.15, with overall average accuracy at 85%. 
 
-
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/90031266/171191293-1d985f73-0b82-4e1c-96b6-b2c557e4a968.png" />
+  <img width="800" src="https://user-images.githubusercontent.com/90031266/171191293-1d985f73-0b82-4e1c-96b6-b2c557e4a968.png" />
 </div>
 
 3. We then loaded this pre-trained model into our NodeJS app.
@@ -26,35 +29,32 @@ To democratise digital creation, and allow for a creator movement that even non-
 Anything goes so long the pen markings are clearly visible in the imported image.
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/90031266/171192414-cc8da9c8-5e59-4938-a55b-bcca9d137bc5.gif" />
+  <img width="800" src="https://user-images.githubusercontent.com/90031266/171198217-878f8fb1-0f9f-40e2-9c86-8068f64ab694.gif" />
 </div>
 
 5. Squiggle processes it. And there we have it – a highly-fidel wireframe in Figma. With Squiggle, a user can quickly iterate by sketching out many variations of their design and so explore various possibilities thoroughly before landing on a final design. 
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/90031266/171193040-13bbe358-9b3d-4910-883e-d94a0add1026.png" />
+  <img width="800" src="https://user-images.githubusercontent.com/90031266/171199467-3e254394-03b5-40c4-b566-cae067dc4579.png" />
 </div>
 
 ## Feasibility of Concept
-86% of designers already brainstorm with pencil, paper or whiteboard according to a survey in 2019 by uxtools.co. Squiggle simply leverages upon existing user behaviour. 
 
-Sketching isn’t just the way of the layman designer either, even highly established, and experienced designers from companies like Nintendo and Hatena have spoken about using sketching as a part of their prototyping process in designing the Miiverse. The merits of sketching to design have long been acknowledged but until now it has been difficult for designers to incorporate it into their design process. 
+1. 86% of designers already brainstorm with pencil, paper or whiteboard according to a survey in 2019 by uxtools.co. Squiggle simply leverages upon existing user behaviour. 
 
-Because the effort of having to draw twice on paper and on screen discourages rapid prototyping, and it is difficult for some to imagine what their hand-drawn designs would look like on screen. Both of these problems are neatly averted with Squiggle, because you need only draw once to see how it looks like as a sketch and as a wireframe.
+2. Sketching isn’t just the way of the layman designer either, even highly established, and experienced designers from companies like Nintendo and Hatena have spoken about using sketching as a part of their prototyping process in designing the Miiverse. The merits of sketching to design have long been acknowledged but until now it has been difficult for designers to incorporate it into their design process. 
 
-And Squiggle’s swift conversion of sketch to wireframe removes the need for imagination. 
+3. Because the effort of having to draw twice on paper and on screen discourages rapid prototyping, and it is difficult for some to imagine what their hand-drawn designs would look like on screen. Both of these problems are neatly averted with Squiggle, because you need only draw once to see how it looks like as a sketch and as a wireframe.
 
 ## Technical Feasibility
-Due to time constraints, we only used 53 out of the 168 wireframe images we prepared to train the current model. With a larger dataset, the model accuracy will be boosted. 
 
-We could also train the mode to recognize more features such as colour and element properties like border radius or roundedness of the corners, so that the rendered figma components will more closely resemble the hand-drawing. 
+1. Due to time constraints, we only used 53 out of the 168 wireframe images we prepared to train the current model. With a larger dataset, the model accuracy will be boosted. 
 
-We would have also loved to render the components exact to how they appear. For example a button output would not just be represented by a rectangular frame, but would be presented with the right shadow properties. This realism would let our non-designer users produce ready-to-go wireframes using our plugin app with minimal need for further editing on the Figma app
+2. We could also train the mode to recognize more features such as colour and element properties like border radius or roundedness of the corners, so that the rendered figma components will more closely resemble the hand-drawing. 
 
+3. We would have also loved to render the components exact to how they appear. For example a button output would not just be represented by a rectangular frame, but would be presented with the right shadow properties. This realism would let our non-designer users produce ready-to-go wireframes using our plugin app with minimal need for further editing on the Figma app
 
-On top of empowering creators, and enabling time and budget savings during the iterative design process, we also envision Squiggle as part of broader shifts around Human-Computer Interaction, where we build around existing patterns of natural human behaviour. So technological use is intuitive, seamless, and so integrated it almost disappears into the process - just like how Squiggle takes rough sketches on paper to digital prototypes without any need for code.
-
-To borrow the words of Peter Rai, Principle Engineer at Cisco - “Once we push people out of unnatural patterns such as apps, screens and keyboards, into more natural modes of interaction like gestures and voice, designers become even more important than the technologists.”
+## Conclusion
 
 With tools like Squiggle, what you can design is limited only by your imagination, and not by your skill with computers or coding. Everyone should be able to take part in digital creation. Join the creator movement, design with Squiggle
 

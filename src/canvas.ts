@@ -1,21 +1,29 @@
 import { PredictionDataInterface, classMap } from "./utils";
 
-export async function generateFrame(data: PredictionDataInterface): Promise<SceneNode> {
+export async function generateFigmaElement(data: PredictionDataInterface, artBoardWidth:number, artBoardHeight:number): Promise<SceneNode> {
 
   const { boundingBoxData, classType, originalImageSize } = data;
+  const  [yMin, xMin, yMax, xMax] = boundingBoxData
 
   const frame = figma.createFrame()
-  frame.resize(originalImageSize[1] * (boundingBoxData[3] - boundingBoxData[1]), originalImageSize[0] * (boundingBoxData[2] - boundingBoxData[0]))
-  // console.log("frame.x", boundingBoxData[1] * originalImageSize[1])
-  // console.log("width: ", originalImageSize[1] * (boundingBoxData[3] - boundingBoxData[1]))
-  frame.x = boundingBoxData[1] * originalImageSize[1]
-  frame.y = boundingBoxData[0] * originalImageSize[0]
+  // why is bounding box  data in  array of 4, 2 points in one array? []
+  // is the number from 0-1 (normalised)
+  // [y1, x1, y2, x2]
+  const width = artBoardWidth * (xMax - xMin)
+  const height = artBoardHeight * (yMax - yMin)
+
+  frame.resize(width, height)
+
+  frame.x = xMin * artBoardWidth
+  frame.y = yMin * artBoardHeight
   frame.backgrounds = []
   frame.fills = [{ type: 'SOLID', color: classMap[classType].color, opacity: 0.4 }]
   frame.effects = []
   frame.name = classMap[classType].name
   frame.clipsContent = false
-  
+  frame.cornerRadius = 10
+
+
   // const { dominantColor, palette, suggestedTextColors } = data
 
   // const swatchSize = 44
@@ -29,7 +37,7 @@ export async function generateFrame(data: PredictionDataInterface): Promise<Scen
   // const black = { r: 0, g: 0, b: 0 }
   // const white = { r: 1, g: 1, b: 1 }
   // const paletteCornerRadius = 6
-  
+
   // const imagePreviewInset = 16
   // const imageBoundsHeight = node.height > maxImagePreviewHeight
   // ? maxImagePreviewHeight

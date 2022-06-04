@@ -1,3 +1,4 @@
 .env
 storage_initialize.ts
+firestore_initialize.ts
 node_modules

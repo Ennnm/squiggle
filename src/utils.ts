@@ -9,19 +9,35 @@ export interface PredictionDataInterface {
 
 export const classMap:any = {
     1: {name: "Button", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
-    2: {name: "Image", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    3: {name: "Navbar", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    4: {name: "Text", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    5: {name: "H1", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    6: {name: "Paragraph", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    7: {name: "User Profile", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    8: {name: "Checkbox", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    9: {name: "Video", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    10: {name: "Divider", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    11: {name: "Input Field", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    12: {name: "Ahref", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    13: {name: "Background Frame", color: {r: 1, g: 1, b: 1}}, 
+    2: {name: "Image", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    3: {name: "Navbar", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    4: {name: "Text", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    5: {name: "H1", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    6: {name: "Paragraph", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    7: {name: "User Profile", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    8: {name: "Checkbox", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    9: {name: "Video", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    10: {name: "Divider", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    11: {name: "Input Field", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    12: {name: "Ahref", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    13: {name: "Background Frame", color: {r: 1, g: 1, b: 1}},
   }
+
+export enum elementType{
+  button,
+  image,
+  navBar,
+  text,
+  h1,
+  paragraph,
+  userProfile,
+  checkbox,
+  video,
+  divider,
+  inputField,
+  ahref,
+  backgroundFrame,
+}
 
 // function isTextNode(node): boolean {
 //   return node.type === "TEXT"

@@ -443,10 +443,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/3a14f20a-4928-4681-996d-fc3f81b24810/loading-indicator.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ed50dcd1-a5b1-4f78-890a-2e111f9ac0e9/loading-indicator.js
   var loading_indicator_default;
   var init_loading_indicator = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/3a14f20a-4928-4681-996d-fc3f81b24810/loading-indicator.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ed50dcd1-a5b1-4f78-890a-2e111f9ac0e9/loading-indicator.js"() {
       if (document.getElementById("060089a544") === null) {
         const element = document.createElement("style");
         element.id = "060089a544";
@@ -520,10 +520,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/fb4ed1e0-0220-452c-b85f-30373f3dd412/button.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d56179cf-a611-4a17-a394-0293bb0eb0c3/button.js
   var button_default;
   var init_button = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/fb4ed1e0-0220-452c-b85f-30373f3dd412/button.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d56179cf-a611-4a17-a394-0293bb0eb0c3/button.js"() {
       if (document.getElementById("cad4ebc620") === null) {
         const element = document.createElement("style");
         element.id = "cad4ebc620";
@@ -672,10 +672,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/531d2c06-df8e-4992-bd9d-9ee76ca84272/file-upload-dropzone.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a6e883bd-ef75-4085-b31b-1136012d7501/file-upload-dropzone.js
   var file_upload_dropzone_default;
   var init_file_upload_dropzone = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/531d2c06-df8e-4992-bd9d-9ee76ca84272/file-upload-dropzone.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a6e883bd-ef75-4085-b31b-1136012d7501/file-upload-dropzone.js"() {
       if (document.getElementById("2221292a2e") === null) {
         const element = document.createElement("style");
         element.id = "2221292a2e";
@@ -797,10 +797,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/8146848d-41c4-4080-ad4a-90073f193c15/container.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/3a323fc3-6e7d-45eb-89dc-ed006ad8bf8b/container.js
   var container_default;
   var init_container = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/8146848d-41c4-4080-ad4a-90073f193c15/container.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/3a323fc3-6e7d-45eb-89dc-ed006ad8bf8b/container.js"() {
       if (document.getElementById("2130edf028") === null) {
         const element = document.createElement("style");
         element.id = "2130edf028";
@@ -843,10 +843,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/8e4aa4c4-6205-4daa-a74a-dab5e7428050/vertical-space.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/6d72f308-fd36-4c87-ae53-f9da9da3bb80/vertical-space.js
   var vertical_space_default;
   var init_vertical_space = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/8e4aa4c4-6205-4daa-a74a-dab5e7428050/vertical-space.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/6d72f308-fd36-4c87-ae53-f9da9da3bb80/vertical-space.js"() {
       if (document.getElementById("4a51e5b19a") === null) {
         const element = document.createElement("style");
         element.id = "4a51e5b19a";
@@ -889,10 +889,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/4bfe142d-be80-4931-8696-fecf6c09c7c0/text.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/cf58fb5a-498e-4191-bd06-309cafb4e735/text.js
   var text_default;
   var init_text = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/4bfe142d-be80-4931-8696-fecf6c09c7c0/text.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/cf58fb5a-498e-4191-bd06-309cafb4e735/text.js"() {
       if (document.getElementById("2d89b2a498") === null) {
         const element = document.createElement("style");
         element.id = "2d89b2a498";
@@ -1018,9 +1018,9 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/78cf3faa-87d8-40d1-81c7-f8eca74989cf/base.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ff7e83d9-d511-4eeb-a1b8-9238c1fcc137/base.js
   var init_base = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/78cf3faa-87d8-40d1-81c7-f8eca74989cf/base.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ff7e83d9-d511-4eeb-a1b8-9238c1fcc137/base.js"() {
       if (document.getElementById("9323e01daf") === null) {
         const element = document.createElement("style");
         element.id = "9323e01daf";
@@ -1187,10 +1187,10 @@ svg {
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/95cd63ac-a4a6-4236-aedd-ef28fbdc3f95/styles.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/9a633ab5-3243-4449-8334-da318e31bf54/styles.js
   var styles_default;
   var init_styles = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/95cd63ac-a4a6-4236-aedd-ef28fbdc3f95/styles.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/9a633ab5-3243-4449-8334-da318e31bf54/styles.js"() {
       if (document.getElementById("b0ed145564") === null) {
         const element = document.createElement("style");
         element.id = "b0ed145564";
@@ -2388,7 +2388,7 @@ svg {
         }
       };
       name$o = "@firebase/app";
-      version$1 = "0.7.24";
+      version$1 = "0.7.25";
       logger = new Logger("@firebase/app");
       name$n = "@firebase/app-compat";
       name$m = "@firebase/analytics-compat";
@@ -2414,7 +2414,7 @@ svg {
       name$2 = "@firebase/firestore";
       name$1 = "@firebase/firestore-compat";
       name = "firebase";
-      version = "9.8.1";
+      version = "9.8.2";
       DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
       PLATFORM_LOG_STRING = {
         [name$o]: "fire-core",
@@ -3924,7 +3924,7 @@ ${this.customData.serverResponse}`;
       init_index_esm20174();
       init_index_esm20174();
       name3 = "firebase";
-      version3 = "9.8.1";
+      version3 = "9.8.2";
       registerVersion(name3, version3, "app");
     }
   });
@@ -12070,6 +12070,11 @@ This typically indicates that your device does not have a healthy Internet conne
       onClick: handleClick
     }, "Upload"), /* @__PURE__ */ v(VerticalSpace, {
       space: "small"
+    }), /* @__PURE__ */ v("canvas", {
+      id: "canvas"
+    }), /* @__PURE__ */ v("img", {
+      src: "./assets/image-placeholder.png",
+      id: "placeholderImage"
     }));
   }
   var ui_default;

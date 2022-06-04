@@ -1,4 +1,4 @@
-import { RGB } from './colors'
+import { RGB } from './lib/colors'
 
 export interface PredictionDataInterface {
   boundingBoxData: number[];
@@ -7,21 +7,68 @@ export interface PredictionDataInterface {
   originalImageSize: number[]
 }
 
+export interface BoundingBox {
+  yMin : number,
+  xMin : number,
+  yMax : number,
+  xMax : number,
+  artBoardWidth : number,
+  artBoardHeight :number
+  classType: number,
+}
+export interface Color{
+  r: number,
+  g: number,
+  b: number
+}
+export interface FrameProperties{
+  color? : RGB,
+  opacity? :number,
+  cornerRadius?: number,
+  stroke?: number
+  strokeColor?: RGB
+}
+
+export interface TextProperties{
+  containerWidth:number,
+  containerHeight:number,
+  textColor?: RGB,
+  fontSize?:number,
+  textAlignHorizontal?: 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFIED'
+}
+
 export const classMap:any = {
     1: {name: "Button", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
-    2: {name: "Image", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    3: {name: "Navbar", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    4: {name: "Text", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    5: {name: "H1", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    6: {name: "Paragraph", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    7: {name: "User Profile", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    8: {name: "Checkbox", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    9: {name: "Video", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    10: {name: "Divider", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    11: {name: "Input Field", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    12: {name: "Ahref", color: {r: Math.random(), g: Math.random(), b: Math.random()}}, 
-    13: {name: "Background Frame", color: {r: 1, g: 1, b: 1}}, 
+    2: {name: "Image", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    3: {name: "Navbar", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    4: {name: "Text", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    5: {name: "H1", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    6: {name: "Paragraph", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    7: {name: "User Profile", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    8: {name: "Checkbox", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    9: {name: "Video", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    10: {name: "Divider", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    11: {name: "Input Field", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    12: {name: "Ahref", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
+    13: {name: "Background Frame", color: {r: 1, g: 1, b: 1}},
   }
+
+export enum elementType{
+  undefined,
+  button,
+  image,
+  navBar,
+  text,
+  h1,
+  paragraph,
+  userProfile,
+  checkbox,
+  video,
+  divider,
+  inputField,
+  ahref,
+  backgroundFrame,
+}
 
 // function isTextNode(node): boolean {
 //   return node.type === "TEXT"

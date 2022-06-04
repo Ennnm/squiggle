@@ -29,12 +29,21 @@ async function renderElementsOnScreen(predictionData:any) {
   const artBoardHeight = artBoard.originalImageSize[0]
 
   data.unshift(artBoardData(artBoard))
+
   return await generateFigmaElements(data, artBoardWidth, artBoardHeight)
 }
 
 export default function () {
+
   once('SUBMIT', async function (predictionData) {
-    renderElementsOnScreen(predictionData)
+
+  const roboto = { family: 'Roboto', style: 'Bold' }
+  const inter = { family: "Inter", style: "Regular" }
+  const fonts = [ roboto,  inter]
+  await Promise.all(fonts.map( _=>  figma.loadFontAsync(_)))
+  // await fonts.forEach( _=>  figma.loadFontAsync(_))
+  // await figma.loadFontAsync(inter)
+  renderElementsOnScreen(predictionData)
     figma.closePlugin()
   })
 

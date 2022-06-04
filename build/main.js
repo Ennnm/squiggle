@@ -111,7 +111,10 @@
   async function generateFigmaElement(data, artBoardWidth, artBoardHeight) {
     const { boundingBoxData, classType, originalImageSize } = data;
     const [yMin, xMin, yMax, xMax] = boundingBoxData;
+    const black = { r: 0, g: 0, b: 0 };
+    const fontSize = 10;
     const frame = figma.createFrame();
+    const text = figma.createText();
     const width = artBoardWidth * (xMax - xMin);
     const height = artBoardHeight * (yMax - yMin);
     frame.resize(width, height);
@@ -123,6 +126,13 @@
     frame.name = classMap[classType].name;
     frame.clipsContent = false;
     frame.cornerRadius = 10;
+    text.textAlignHorizontal = "CENTER";
+    text.fontSize = fontSize;
+    text.x = width / 2;
+    text.y = height / 2 - fontSize / 2;
+    text.fills = [{ type: "SOLID", color: black }];
+    text.characters = "hello";
+    frame.appendChild(text);
     return Promise.resolve(frame);
   }
   var init_canvas = __esm({
@@ -161,6 +171,10 @@
   }
   function main_default() {
     once("SUBMIT", async function(predictionData) {
+      const roboto = { family: "Roboto", style: "Bold" };
+      const inter = { family: "Inter", style: "Regular" };
+      const fonts = [roboto, inter];
+      await Promise.all(fonts.map((_) => figma.loadFontAsync(_)));
       renderElementsOnScreen(predictionData);
       figma.closePlugin();
     });

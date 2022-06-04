@@ -21,7 +21,6 @@ import { db } from '../config/firestore_initialize';
 function Plugin() {
   const [predictionData, setPredictionData] = useState({})
   const [imageFile, setImageFile]= useState()
-
   useEffect(() => {
     onSnapshot(
           collection(db, 'predictionData'), (snapshot) => {
@@ -49,6 +48,7 @@ function Plugin() {
     <Container>
       <VerticalSpace space="small" />
       <div class={styles.container}>
+
         <AcceptedFileTypes />
       </div>
 

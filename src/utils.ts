@@ -7,6 +7,36 @@ export interface PredictionDataInterface {
   originalImageSize: number[]
 }
 
+export interface BoundingBox {
+  yMin : number,
+  xMin : number,
+  yMax : number,
+  xMax : number,
+  artBoardWidth : number,
+  artBoardHeight :number
+  classType: number,
+}
+export interface Color{
+  r: number,
+  g: number,
+  b: number
+}
+export interface FrameProperties{
+  color? : RGB,
+  opacity? :number,
+  cornerRadius?: number,
+  stroke?: number
+  strokeColor?: RGB
+}
+
+export interface TextProperties{
+  containerWidth:number,
+  containerHeight:number,
+  textColor?: RGB,
+  fontSize?:number,
+  textAlignHorizontal?: String
+}
+
 export const classMap:any = {
     1: {name: "Button", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
     2: {name: "Image", color: {r: Math.random(), g: Math.random(), b: Math.random()}},
@@ -24,6 +54,7 @@ export const classMap:any = {
   }
 
 export enum elementType{
+  undefined,
   button,
   image,
   navBar,

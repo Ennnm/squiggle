@@ -86,7 +86,7 @@
   });
 
   // src/utils.ts
-  var classMap;
+  var classMap, elementType;
   var init_utils = __esm({
     "src/utils.ts"() {
       classMap = {
@@ -104,315 +104,155 @@
         12: { name: "Ahref", color: { r: Math.random(), g: Math.random(), b: Math.random() } },
         13: { name: "Background Frame", color: { r: 1, g: 1, b: 1 } }
       };
+      elementType = /* @__PURE__ */ ((elementType2) => {
+        elementType2[elementType2["undefined"] = 0] = "undefined";
+        elementType2[elementType2["button"] = 1] = "button";
+        elementType2[elementType2["image"] = 2] = "image";
+        elementType2[elementType2["navBar"] = 3] = "navBar";
+        elementType2[elementType2["text"] = 4] = "text";
+        elementType2[elementType2["h1"] = 5] = "h1";
+        elementType2[elementType2["paragraph"] = 6] = "paragraph";
+        elementType2[elementType2["userProfile"] = 7] = "userProfile";
+        elementType2[elementType2["checkbox"] = 8] = "checkbox";
+        elementType2[elementType2["video"] = 9] = "video";
+        elementType2[elementType2["divider"] = 10] = "divider";
+        elementType2[elementType2["inputField"] = 11] = "inputField";
+        elementType2[elementType2["ahref"] = 12] = "ahref";
+        elementType2[elementType2["backgroundFrame"] = 13] = "backgroundFrame";
+        return elementType2;
+      })(elementType || {});
+    }
+  });
+
+  // src/colors.ts
+  var black, white;
+  var init_colors = __esm({
+    "src/colors.ts"() {
+      black = { r: 0, b: 0, g: 0 };
+      white = { r: 1, b: 1, g: 1 };
+    }
+  });
+
+  // src/figma-elements/frame.ts
+  function frameElement(data, { color = white, opacity = 0.4, cornerRadius = 0, stroke = 0, strokeColor = black }) {
+    const frame = figma.createFrame();
+    const width = data.artBoardWidth * (data.xMax - data.xMin);
+    const height = data.artBoardHeight * (data.yMax - data.yMin);
+    frame.resize(width, height);
+    console.log(`color: ${color.r}`);
+    console.log(`stroke: ${stroke}`);
+    frame.x = data.xMin * data.artBoardWidth;
+    frame.y = data.yMin * data.artBoardHeight;
+    frame.backgrounds = [];
+    frame.fills = [{ type: "SOLID", color, opacity }];
+    frame.strokeWeight = stroke;
+    frame.strokes = [{ type: "SOLID", color: strokeColor, opacity }];
+    frame.effects = [];
+    frame.name = classMap[data.classType].name;
+    frame.clipsContent = false;
+    frame.cornerRadius = cornerRadius;
+    return frame;
+  }
+  var init_frame = __esm({
+    "src/figma-elements/frame.ts"() {
+      init_utils();
+      init_colors();
+    }
+  });
+
+  // src/figma-elements/singleLineText.ts
+  function singleLineTextElement(text, { containerWidth, containerHeight, textColor = { r: 0, g: 0, b: 0 }, fontSize = 12, textAlignHorizontal = "Center" }) {
+    const textElement = figma.createText();
+    textElement.textAlignHorizontal = "CENTER";
+    textElement.fontSize = fontSize;
+    textElement.x = containerWidth / 2;
+    textElement.y = containerHeight / 2 - fontSize / 2;
+    textElement.fills = [{ type: "SOLID", color: textColor }];
+    textElement.characters = text;
+    return textElement;
+  }
+  var init_singleLineText = __esm({
+    "src/figma-elements/singleLineText.ts"() {
     }
   });
 
   // src/figma-elements/h1.ts
-  function h1Element(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
+  function h1Element(data) {
+    const width = data.artBoardWidth * (data.xMax - data.xMin);
+    const height = data.artBoardHeight * (data.yMax - data.yMin);
+    const frameProperties = {
+      stroke: 1
+    };
+    const frame = frameElement(data, frameProperties);
+    const TextProperties = {
+      containerWidth: width,
+      containerHeight: height
+    };
+    const text = singleLineTextElement("Heading1", TextProperties);
     frame.appendChild(text);
     return frame;
   }
   var init_h1 = __esm({
     "src/figma-elements/h1.ts"() {
-      init_utils();
-    }
-  });
-
-  // src/figma-elements/paragraph.ts
-  function paragraphElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
-    frame.appendChild(text);
-    return frame;
-  }
-  var init_paragraph = __esm({
-    "src/figma-elements/paragraph.ts"() {
-      init_utils();
-    }
-  });
-
-  // src/figma-elements/text.ts
-  function textElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
-    frame.appendChild(text);
-    return frame;
-  }
-  var init_text = __esm({
-    "src/figma-elements/text.ts"() {
-      init_utils();
-    }
-  });
-
-  // src/figma-elements/navbar.ts
-  function navElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
-    frame.appendChild(text);
-    return frame;
-  }
-  var init_navbar = __esm({
-    "src/figma-elements/navbar.ts"() {
-      init_utils();
+      init_frame();
+      init_singleLineText();
     }
   });
 
   // src/figma-elements/button.ts
-  function buttonElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
+  function buttonElement(data) {
+    const width = data.artBoardWidth * (data.xMax - data.xMin);
+    const height = data.artBoardHeight * (data.yMax - data.yMin);
+    const frameProperties = {
+      color: classMap[data.classType].color,
+      cornerRadius: height / 2
+    };
+    const frame = frameElement(data, frameProperties);
+    const TextProperties = {
+      containerWidth: width,
+      containerHeight: height
+    };
+    const text = singleLineTextElement("Button", TextProperties);
     frame.appendChild(text);
     return frame;
   }
   var init_button = __esm({
     "src/figma-elements/button.ts"() {
       init_utils();
-    }
-  });
-
-  // src/figma-elements/image.ts
-  function imageElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
-    frame.appendChild(text);
-    return frame;
-  }
-  var init_image = __esm({
-    "src/figma-elements/image.ts"() {
-      init_utils();
-    }
-  });
-
-  // src/figma-elements/userProfile.ts
-  function userProfileElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
-    frame.appendChild(text);
-    return frame;
-  }
-  var init_userProfile = __esm({
-    "src/figma-elements/userProfile.ts"() {
-      init_utils();
-    }
-  });
-
-  // src/figma-elements/checkbox.ts
-  function checkboxElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType, originalImageSize } = data;
-    const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
-    const frame = figma.createFrame();
-    const text = figma.createText();
-    const width = artBoardWidth * (xMax - xMin);
-    const height = artBoardHeight * (yMax - yMin);
-    frame.resize(width, height);
-    frame.x = xMin * artBoardWidth;
-    frame.y = yMin * artBoardHeight;
-    frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
-    frame.effects = [];
-    frame.name = classMap[classType].name;
-    frame.clipsContent = false;
-    frame.cornerRadius = 10;
-    text.textAlignHorizontal = "CENTER";
-    text.fontSize = fontSize;
-    text.x = width / 2;
-    text.y = height / 2 - fontSize / 2;
-    text.fills = [{ type: "SOLID", color: black }];
-    text.characters = "hello";
-    frame.appendChild(text);
-    return frame;
-  }
-  var init_checkbox = __esm({
-    "src/figma-elements/checkbox.ts"() {
-      init_utils();
+      init_frame();
+      init_singleLineText();
     }
   });
 
   // src/canvas.ts
-  async function generateFigmaElement(data, artBoardWidth, artBoardHeight) {
-    const { boundingBoxData, classType } = data;
+  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight) {
+    const { boundingBoxData, classType } = predictionData;
     const [yMin, xMin, yMax, xMax] = boundingBoxData;
-    const black = { r: 0, g: 0, b: 0 };
+    const data = {
+      yMin,
+      xMin,
+      yMax,
+      xMax,
+      artBoardWidth,
+      artBoardHeight,
+      classType
+    };
+    const black2 = { r: 0, g: 0, b: 0 };
     const fontSize = 10;
-    let element = figma.createFrame();
+    let element = null;
     switch (classType) {
-      case 0 /* button */:
-        element = buttonElement(data, artBoardWidth, artBoardHeight);
+      case 1 /* button */:
+        element = buttonElement(data);
         break;
-      case 1 /* image */:
-        imageElement(data, artBoardWidth, artBoardHeight);
+      case 13 /* backgroundFrame */:
+        element = buttonElement(data);
         break;
-      case 2 /* navBar */:
-        navElement(data, artBoardWidth, artBoardHeight);
-        break;
-      case 3 /* text */:
-        textElement(data, artBoardWidth, artBoardHeight);
-        break;
-      case 4 /* h1 */:
-        h1Element(data, artBoardWidth, artBoardHeight);
-        break;
-      case 5 /* paragraph */:
-        paragraphElement(data, artBoardWidth, artBoardHeight);
-        break;
-      case 6 /* userProfile */:
-        userProfileElement(data, artBoardWidth, artBoardHeight);
-        break;
-      case 7 /* checkbox */:
-        checkboxElement(data, artBoardWidth, artBoardHeight);
+      case 5 /* h1 */:
+        element = h1Element(data);
         break;
       default:
-        console.log("type not created yet");
+        console.log(`classtype: ${classType}`);
+        console.log(`type not created yet: ${elementType[classType]}`);
         break;
     }
     return Promise.resolve(element);
@@ -421,13 +261,7 @@
     "src/canvas.ts"() {
       init_utils();
       init_h1();
-      init_paragraph();
-      init_text();
-      init_navbar();
       init_button();
-      init_image();
-      init_userProfile();
-      init_checkbox();
     }
   });
 

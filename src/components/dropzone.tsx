@@ -12,7 +12,7 @@ export const AcceptedFileTypes = function () {
         const file = files[0]
         const imageUuid = uuidv4()
         const imageRef = ref(storage, `images/${imageUuid}.jpg`)
-        
+
         // upload image to firebase (to access storage/firestore/firebase functions) from figma
         uploadBytes(imageRef, file).then((snapshot) => {
             console.log('uploaded a blob or file!')

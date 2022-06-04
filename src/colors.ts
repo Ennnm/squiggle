@@ -1,5 +1,5 @@
-const black = { r: 0, b: 0, g: 0 }
-const white = { r: 1, b: 1, g: 1 }
+export const black = { r: 0, b: 0, g: 0 }
+export const white = { r: 1, b: 1, g: 1 }
 
 export interface RGB {
   r: number;

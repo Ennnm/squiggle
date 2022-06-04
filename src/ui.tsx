@@ -36,7 +36,7 @@ function Plugin() {
           }
         );
   }, []);
-
+  // may not need dependency to work
   const handleClick = useCallback(
     async function () {
       // function to trigger processing of uploaded image on backend
@@ -49,11 +49,7 @@ function Plugin() {
     <Container>
       <VerticalSpace space="small" />
       <div class={styles.container}>
-
         <AcceptedFileTypes />
-        {/* <AcceptedFileTypes setImageFile={setImageFile}/> */}
-        {/* <img src="https://i.natgeofe.com/k/0ed36c42-672a-425b-9e62-7cc946b98051/pig-fence.jpg" alt="Logo" /> */}
-        
       </div>
 
       <VerticalSpace space="large" />

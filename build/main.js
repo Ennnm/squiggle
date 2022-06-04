@@ -108,17 +108,21 @@
   });
 
   // src/canvas.ts
-  async function generateFrame(data) {
+  async function generateFigmaElement(data, artBoardWidth, artBoardHeight) {
     const { boundingBoxData, classType, originalImageSize } = data;
+    const [yMin, xMin, yMax, xMax] = boundingBoxData;
     const frame = figma.createFrame();
-    frame.resize(originalImageSize[1] * (boundingBoxData[3] - boundingBoxData[1]), originalImageSize[0] * (boundingBoxData[2] - boundingBoxData[0]));
-    frame.x = boundingBoxData[1] * originalImageSize[1];
-    frame.y = boundingBoxData[0] * originalImageSize[0];
+    const width = artBoardWidth * (xMax - xMin);
+    const height = artBoardHeight * (yMax - yMin);
+    frame.resize(width, height);
+    frame.x = xMin * artBoardWidth;
+    frame.y = yMin * artBoardHeight;
     frame.backgrounds = [];
     frame.fills = [{ type: "SOLID", color: classMap[classType].color, opacity: 0.4 }];
     frame.effects = [];
     frame.name = classMap[classType].name;
     frame.clipsContent = false;
+    frame.cornerRadius = 10;
     return Promise.resolve(frame);
   }
   var init_canvas = __esm({
@@ -132,29 +136,32 @@
   __export(main_exports, {
     default: () => main_default
   });
+  async function generateFigmaElements(data, artBoardWidth, artBoardHeight) {
+    data.forEach(async (oneFrameData) => {
+      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight);
+    });
+  }
+  function artBoardData(artBoard) {
+    const xMin = 0, yMin = 0, xMax = 1, yMax = 1;
+    const whiteBackgroundFrameData = {
+      "boundingBoxData": [yMin, xMin, yMax, xMax],
+      "classType": 13,
+      "scores": 1,
+      "originalImageSize": artBoard.originalImageSize
+    };
+    return whiteBackgroundFrameData;
+  }
+  async function renderElementsOnScreen(predictionData) {
+    const data = predictionData.predictionData;
+    const artBoard = data[0];
+    const artBoardWidth = artBoard.originalImageSize[1];
+    const artBoardHeight = artBoard.originalImageSize[0];
+    data.unshift(artBoardData(artBoard));
+    return await generateFigmaElements(data, artBoardWidth, artBoardHeight);
+  }
   function main_default() {
     once("SUBMIT", async function(predictionData) {
-      async function renderElementsOnScreen() {
-        const data = predictionData.predictionData;
-        const whiteBackgroundFrameData = {
-          "boundingBoxData": [0, 0, 1, 1],
-          "classType": 13,
-          "scores": 1,
-          "originalImageSize": []
-        };
-        whiteBackgroundFrameData.originalImageSize = data[0].originalImageSize;
-        data.unshift(whiteBackgroundFrameData);
-        return new Promise((res) => {
-          async function asyncGenerateFrames() {
-            data.forEach(async (oneFrameData) => {
-              await generateFrame(oneFrameData);
-            });
-          }
-          asyncGenerateFrames();
-          return Promise.resolve();
-        });
-      }
-      renderElementsOnScreen();
+      renderElementsOnScreen(predictionData);
       figma.closePlugin();
     });
     showUI({ width: 320, height: 240 });

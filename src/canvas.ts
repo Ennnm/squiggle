@@ -2,7 +2,7 @@ import { PredictionDataInterface, BoundingBox, classMap, elementType } from "./u
 import { h1Element } from "./figma-elements/h1";
 // import { h2Element } from "./figma-elements/h2";
 // import { paragraphElement } from "./figma-elements/paragraph";
-// import { textElement } from "./figma-elements/text";
+import { textElement } from "./figma-elements/text";
 // import { navElement } from "./figma-elements/navbar";
 import { buttonElement } from "./figma-elements/button";
 // import { imageElement } from "./figma-elements/image";
@@ -42,9 +42,9 @@ export async function generateFigmaElement(predictionData: PredictionDataInterfa
     // case elementType.navBar:
     //   element = navElement(bBox)
     //   break;
-    // case elementType.text:
-    //   element = textElement(bBox)
-    //   break;
+    case elementType.text:
+      element = textElement(data)
+      break;
     case elementType.h1:
       element = h1Element(data)
       break;

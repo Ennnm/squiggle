@@ -1,4 +1,4 @@
-import { RGB } from './colors'
+import { RGB } from './lib/colors'
 
 export interface PredictionDataInterface {
   boundingBoxData: number[];

@@ -14,7 +14,7 @@ interface Tint {
 
 function tintRGB(props: Tint): RGB {
   let { amount, rgb: { r, g, b }} = props
-  
+
   const getColorTransformation = (number: number): number => (number * (100 + amount)) / 100
 
   r = getColorTransformation(r);

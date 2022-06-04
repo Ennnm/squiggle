@@ -20,6 +20,6 @@ export function loremWord(number: number): string {
 }
 
 export function loremParagraph(number: number) {
-    lorem.generateParagraphs(number);
+    return lorem.generateParagraphs(number);
 
 }

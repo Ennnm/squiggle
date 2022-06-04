@@ -8,8 +8,6 @@ export function frameElement(data: BoundingBox, { color = white, opacity = 0.4, 
     const height = data.artBoardHeight * (data.yMax - data.yMin)
 
     frame.resize(width, height)
-    console.log(`color: ${color.r}`)
-    console.log(`stroke: ${stroke}`)
     frame.x = data.xMin * data.artBoardWidth
     frame.y = data.yMin * data.artBoardHeight
     frame.backgrounds = []
@@ -20,6 +18,7 @@ export function frameElement(data: BoundingBox, { color = white, opacity = 0.4, 
     frame.name = classMap[data.classType].name
     frame.clipsContent = true
     frame.cornerRadius = cornerRadius
+    frame.layoutMode="HORIZONTAL"
 
     return frame
 }

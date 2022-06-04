@@ -34,7 +34,7 @@ export interface TextProperties{
   containerHeight:number,
   textColor?: RGB,
   fontSize?:number,
-  textAlignHorizontal?: String
+  textAlignHorizontal?: 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFIED'
 }
 
 export const classMap:any = {

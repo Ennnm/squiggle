@@ -1,6 +1,6 @@
 import { BoundingBox, FrameProperties, classMap } from "../utils";
 import { frameElement } from "./frame";
-import { singleLineTextElement } from './singleLineText'
+import { centeredTextElement } from './centeredTextElement'
 
 export function h1Element(data: BoundingBox): SceneNode {
     const width = data.artBoardWidth * (data.xMax - data.xMin)
@@ -16,7 +16,7 @@ export function h1Element(data: BoundingBox): SceneNode {
         containerWidth: width,
         containerHeight: height,
     }
-    const text: TextNode = singleLineTextElement('Heading1', TextProperties)
+    const text: TextNode = centeredTextElement('Heading1', TextProperties)
     frame.appendChild(text)
     return frame;
 }

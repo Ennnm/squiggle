@@ -1,6 +1,6 @@
-import { BoundingBox, FrameProperties, classMap } from "../utils";
+import { BoundingBox } from "../utils";
 import { frameElement } from "./frame";
-import { singleLineTextElement } from './singleLineText'
+import { topAlignedTextElement } from './topAlignedTextElement'
 import { loremSentence } from "../lib/loremIpsum";
 
 export function textElement(data: BoundingBox): SceneNode {
@@ -17,7 +17,7 @@ export function textElement(data: BoundingBox): SceneNode {
         containerWidth: width,
         containerHeight: height,
     }
-    const text: TextNode = singleLineTextElement(loremSentence(1), TextProperties)
+    const text: TextNode = topAlignedTextElement(loremSentence(1), TextProperties)
     text.constraints=frame.constraints
     frame.appendChild(text)
     return frame;

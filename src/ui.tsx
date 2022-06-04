@@ -15,25 +15,27 @@ import styles from './styles.css'
 // import { InsertCodeHandler } from './types'
 import { AcceptedFileTypes } from './components/dropzone'
 
-import { doc, collection, query, where, onSnapshot  } from "firebase/firestore";
+import { doc, collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from '../config/firestore_initialize';
+import { loadImage } from './lib/image'
 
 function Plugin() {
   const [predictionData, setPredictionData] = useState({})
-  const [imageFile, setImageFile]= useState()
+  const [imageFile, setImageFile] = useState()
   useEffect(() => {
     onSnapshot(
-          collection(db, 'predictionData'), (snapshot) => {
-            snapshot.docChanges().forEach((change) => {
-              if (change.type === "added") {
-                setPredictionData(change.doc.data())
-                console.log("Received new prediction data: ", change.doc.data())
-              }
-            })
-          }, (err) => {
-            console.log(err)
+      collection(db, 'predictionData'), (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            setPredictionData(change.doc.data())
+            console.log("Received new prediction data: ", change.doc.data())
           }
-        );
+        })
+      }, (err) => {
+        console.log(err)
+      }
+    );
+    // loadImage()
   }, []);
   // may not need dependency to work
   const handleClick = useCallback(
@@ -57,6 +59,9 @@ function Plugin() {
         Upload
       </Button>
       <VerticalSpace space="small" />
+      <canvas id="canvas"></canvas>
+      <img src ="./assets/image-placeholder.png" id="placeholderImage"></img>
+      {/* <img src ="./assets/image-placeholder.png" id="placeholderImage"></img> */}
     </Container>
   )
 }

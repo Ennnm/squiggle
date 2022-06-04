@@ -145,8 +145,6 @@
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     frame.resize(width, height);
-    console.log(`color: ${color.r}`);
-    console.log(`stroke: ${stroke}`);
     frame.x = data.xMin * data.artBoardWidth;
     frame.y = data.yMin * data.artBoardHeight;
     frame.backgrounds = [];
@@ -157,6 +155,7 @@
     frame.name = classMap[data.classType].name;
     frame.clipsContent = true;
     frame.cornerRadius = cornerRadius;
+    frame.layoutMode = "HORIZONTAL";
     return frame;
   }
   var init_frame = __esm({
@@ -166,22 +165,23 @@
     }
   });
 
-  // src/figma-elements/singleLineText.ts
-  function singleLineTextElement(text, { containerWidth, containerHeight, textColor = { r: 0, g: 0, b: 0 }, fontSize = 12, textAlignHorizontal = "Center" }) {
+  // src/figma-elements/centeredTextElement.ts
+  function centeredTextElement(text, { containerWidth, containerHeight, textColor = black, fontSize = 12, textAlignHorizontal = "CENTER" }) {
     const textElement2 = figma.createText();
-    textElement2.textAlignHorizontal = "CENTER";
+    textElement2.textAlignHorizontal = textAlignHorizontal;
+    textElement2.textAlignVertical = "CENTER";
     textElement2.resize(containerWidth, containerHeight);
     textElement2.fontSize = fontSize;
     textElement2.x = 0;
     textElement2.y = 0;
-    textElement2.y = containerHeight / 2 - fontSize / 2;
     textElement2.fills = [{ type: "SOLID", color: textColor }];
     textElement2.characters = text;
     textElement2.constrainProportions = true;
     return textElement2;
   }
-  var init_singleLineText = __esm({
-    "src/figma-elements/singleLineText.ts"() {
+  var init_centeredTextElement = __esm({
+    "src/figma-elements/centeredTextElement.ts"() {
+      init_colors();
     }
   });
 
@@ -197,14 +197,32 @@
       containerWidth: width,
       containerHeight: height
     };
-    const text = singleLineTextElement("Heading1", TextProperties);
+    const text = centeredTextElement("Heading1", TextProperties);
     frame.appendChild(text);
     return frame;
   }
   var init_h1 = __esm({
     "src/figma-elements/h1.ts"() {
       init_frame();
-      init_singleLineText();
+      init_centeredTextElement();
+    }
+  });
+
+  // src/figma-elements/topAlignedTextElement.ts
+  function topAlignedTextElement(text, { containerWidth, containerHeight, textColor = { r: 0, g: 0, b: 0 }, fontSize = 12, textAlignHorizontal = "CENTER" }) {
+    const textElement2 = figma.createText();
+    textElement2.textAlignHorizontal = "CENTER";
+    textElement2.resize(containerWidth, containerHeight);
+    textElement2.fontSize = fontSize;
+    textElement2.x = 0;
+    textElement2.y = containerHeight / 2 - fontSize / 2;
+    textElement2.fills = [{ type: "SOLID", color: textColor }];
+    textElement2.characters = text;
+    textElement2.constrainProportions = true;
+    return textElement2;
+  }
+  var init_topAlignedTextElement = __esm({
+    "src/figma-elements/topAlignedTextElement.ts"() {
     }
   });
 
@@ -747,6 +765,9 @@
   function loremSentence(number) {
     return lorem.generateSentences(number);
   }
+  function loremParagraph(number) {
+    return lorem.generateParagraphs(number);
+  }
   var import_lorem_ipsum, lorem;
   var init_loremIpsum = __esm({
     "src/lib/loremIpsum.ts"() {
@@ -764,6 +785,30 @@
     }
   });
 
+  // src/figma-elements/paragraph.ts
+  function paragraphElement(data) {
+    const width = data.artBoardWidth * (data.xMax - data.xMin);
+    const height = data.artBoardHeight * (data.yMax - data.yMin);
+    const frameProperties = {};
+    const frame = frameElement(data, frameProperties);
+    const TextProperties = {
+      containerWidth: width,
+      containerHeight: height,
+      textAlignHorizontal: "JUSTIFIED"
+    };
+    const text = topAlignedTextElement(loremParagraph(1), TextProperties);
+    text.constraints = frame.constraints;
+    frame.appendChild(text);
+    return frame;
+  }
+  var init_paragraph = __esm({
+    "src/figma-elements/paragraph.ts"() {
+      init_frame();
+      init_topAlignedTextElement();
+      init_loremIpsum();
+    }
+  });
+
   // src/figma-elements/text.ts
   function textElement(data) {
     const width = data.artBoardWidth * (data.xMax - data.xMin);
@@ -776,7 +821,7 @@
       containerWidth: width,
       containerHeight: height
     };
-    const text = singleLineTextElement(loremSentence(1), TextProperties);
+    const text = topAlignedTextElement(loremSentence(1), TextProperties);
     text.constraints = frame.constraints;
     frame.appendChild(text);
     return frame;
@@ -784,7 +829,7 @@
   var init_text = __esm({
     "src/figma-elements/text.ts"() {
       init_frame();
-      init_singleLineText();
+      init_topAlignedTextElement();
       init_loremIpsum();
     }
   });
@@ -802,7 +847,7 @@
       containerWidth: width,
       containerHeight: height
     };
-    const text = singleLineTextElement("Button", TextProperties);
+    const text = centeredTextElement("Button", TextProperties);
     frame.appendChild(text);
     return frame;
   }
@@ -810,7 +855,31 @@
     "src/figma-elements/button.ts"() {
       init_utils();
       init_frame();
-      init_singleLineText();
+      init_centeredTextElement();
+    }
+  });
+
+  // src/figma-elements/image.ts
+  function imageElement(data) {
+    const width = data.artBoardWidth * (data.xMax - data.xMin);
+    const height = data.artBoardHeight * (data.yMax - data.yMin);
+    const frameProperties = {};
+    const frame = frameElement(data, frameProperties);
+    const TextProperties = {
+      containerWidth: width,
+      containerHeight: height,
+      textAlignHorizontal: "JUSTIFIED"
+    };
+    const text = topAlignedTextElement(loremParagraph(1), TextProperties);
+    text.constraints = frame.constraints;
+    frame.appendChild(text);
+    return frame;
+  }
+  var init_image = __esm({
+    "src/figma-elements/image.ts"() {
+      init_frame();
+      init_topAlignedTextElement();
+      init_loremIpsum();
     }
   });
 
@@ -827,21 +896,25 @@
       artBoardHeight,
       classType
     };
-    const black2 = { r: 0, g: 0, b: 0 };
-    const fontSize = 10;
     let element = null;
     switch (classType) {
       case 1 /* button */:
         element = buttonElement(data);
         break;
       case 13 /* backgroundFrame */:
-        element = buttonElement(data);
+        element = frameElement(data, {});
+        break;
+      case 2 /* image */:
+        element = imageElement(data);
         break;
       case 4 /* text */:
         element = textElement(data);
         break;
       case 5 /* h1 */:
         element = h1Element(data);
+        break;
+      case 6 /* paragraph */:
+        element = paragraphElement(data);
         break;
       default:
         console.log(`classtype: ${classType}`);
@@ -854,8 +927,11 @@
     "src/canvas.ts"() {
       init_utils();
       init_h1();
+      init_paragraph();
       init_text();
       init_button();
+      init_image();
+      init_frame();
     }
   });
 

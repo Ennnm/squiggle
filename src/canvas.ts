@@ -11,7 +11,7 @@ import { frameElement } from "./figma-elements/frame";
 // import { checkboxElement } from "./figma-elements/checkbox";
 
 //might input sizes for h1, h2, paragraph
-export async function generateFigmaElement(predictionData: PredictionDataInterface, artBoardWidth:number, artBoardHeight:number): Promise<SceneNode|null> {
+export async function generateFigmaElement(predictionData: PredictionDataInterface, artBoardWidth:number, artBoardHeight:number, placeHolderArray:any): Promise<SceneNode|null> {
 
   const { boundingBoxData, classType } = predictionData;
   const  [yMin, xMin, yMax, xMax] = boundingBoxData
@@ -33,7 +33,7 @@ export async function generateFigmaElement(predictionData: PredictionDataInterfa
       element = frameElement(data,{})
       break;
     case elementType.image:
-      element = imageElement(data)
+      element = await imageElement(data, placeHolderArray)
       break;
     // case elementType.navBar:
     //   element = navElement(bBox)

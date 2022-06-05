@@ -19,9 +19,16 @@ import { doc, collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from '../config/firestore_initialize';
 import { loadImage } from './lib/image'
 
+import imagePlaceholder from './assets/imagePlaceholder.png'
+
+import { getImagePlaceHolderArray } from './lib/image'
+
 function Plugin() {
   const [predictionData, setPredictionData] = useState({})
   const [imageFile, setImageFile] = useState()
+  const [imgPlaceholderArr, setImgPlaceholderArr] = useState(new Uint8Array)
+  let placeHolderArray: string;
+
   useEffect(() => {
     onSnapshot(
       collection(db, 'predictionData'), (snapshot) => {
@@ -35,14 +42,14 @@ function Plugin() {
         console.log(err)
       }
     );
-    // loadImage()
+    getImagePlaceHolderArray().then((_)=>setImgPlaceholderArr(_))
   }, []);
   // may not need dependency to work
   const handleClick = useCallback(
     async function () {
       // function to trigger processing of uploaded image on backend
       // await onSnapshot change to update predictionData useState
-      emit('SUBMIT', predictionData)
+      emit('SUBMIT', predictionData, imgPlaceholderArr)      // console.log(await loadImage(imagePlaceholder));
     },
     [predictionData]
   )
@@ -60,10 +67,10 @@ function Plugin() {
       </Button>
       <VerticalSpace space="small" />
       <canvas id="canvas"></canvas>
-      <img src ="./assets/image-placeholder.png" id="placeholderImage"></img>
-      {/* <img src ="./assets/image-placeholder.png" id="placeholderImage"></img> */}
+      <img id='imagePlaceholder' src={imagePlaceholder} hidden></img>
     </Container>
   )
 }
 
 export default render(Plugin)
+

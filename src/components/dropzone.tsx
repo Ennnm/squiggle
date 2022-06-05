@@ -11,7 +11,7 @@ export const AcceptedFileTypes = function () {
     function handleSelectedFiles(files: Array<File>) {
         const file = files[0]
         const imageUuid = uuidv4()
-        const imageRef = ref(storage, `images/${imageUuid}.jpg`)
+        const imageRef = ref(storage, `images/${imageUuid}.file`)
 
         // upload image to firebase (to access storage/firestore/firebase functions) from figma
         uploadBytes(imageRef, file).then((snapshot) => {

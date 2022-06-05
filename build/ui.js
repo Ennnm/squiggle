@@ -443,10 +443,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ed50dcd1-a5b1-4f78-890a-2e111f9ac0e9/loading-indicator.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/de2085e7-1dfa-4d59-8a39-69c1ad987595/loading-indicator.js
   var loading_indicator_default;
   var init_loading_indicator = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ed50dcd1-a5b1-4f78-890a-2e111f9ac0e9/loading-indicator.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/de2085e7-1dfa-4d59-8a39-69c1ad987595/loading-indicator.js"() {
       if (document.getElementById("060089a544") === null) {
         const element = document.createElement("style");
         element.id = "060089a544";
@@ -520,10 +520,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d56179cf-a611-4a17-a394-0293bb0eb0c3/button.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a953117e-7e54-4937-b3d2-2afe15153413/button.js
   var button_default;
   var init_button = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d56179cf-a611-4a17-a394-0293bb0eb0c3/button.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a953117e-7e54-4937-b3d2-2afe15153413/button.js"() {
       if (document.getElementById("cad4ebc620") === null) {
         const element = document.createElement("style");
         element.id = "cad4ebc620";
@@ -672,10 +672,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a6e883bd-ef75-4085-b31b-1136012d7501/file-upload-dropzone.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a3e455dd-dcd4-4dca-9908-ae834ee4baf7/file-upload-dropzone.js
   var file_upload_dropzone_default;
   var init_file_upload_dropzone = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a6e883bd-ef75-4085-b31b-1136012d7501/file-upload-dropzone.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a3e455dd-dcd4-4dca-9908-ae834ee4baf7/file-upload-dropzone.js"() {
       if (document.getElementById("2221292a2e") === null) {
         const element = document.createElement("style");
         element.id = "2221292a2e";
@@ -797,10 +797,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/3a323fc3-6e7d-45eb-89dc-ed006ad8bf8b/container.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/f85b22a8-65c1-490d-940f-e029dc6242ec/container.js
   var container_default;
   var init_container = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/3a323fc3-6e7d-45eb-89dc-ed006ad8bf8b/container.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/f85b22a8-65c1-490d-940f-e029dc6242ec/container.js"() {
       if (document.getElementById("2130edf028") === null) {
         const element = document.createElement("style");
         element.id = "2130edf028";
@@ -843,10 +843,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/6d72f308-fd36-4c87-ae53-f9da9da3bb80/vertical-space.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d1f6ddfd-99c0-48d9-9693-cbbd336fcb54/vertical-space.js
   var vertical_space_default;
   var init_vertical_space = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/6d72f308-fd36-4c87-ae53-f9da9da3bb80/vertical-space.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d1f6ddfd-99c0-48d9-9693-cbbd336fcb54/vertical-space.js"() {
       if (document.getElementById("4a51e5b19a") === null) {
         const element = document.createElement("style");
         element.id = "4a51e5b19a";
@@ -889,10 +889,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/cf58fb5a-498e-4191-bd06-309cafb4e735/text.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/2eb11d20-4e8e-456d-9ec5-1d674437a554/text.js
   var text_default;
   var init_text = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/cf58fb5a-498e-4191-bd06-309cafb4e735/text.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/2eb11d20-4e8e-456d-9ec5-1d674437a554/text.js"() {
       if (document.getElementById("2d89b2a498") === null) {
         const element = document.createElement("style");
         element.id = "2d89b2a498";
@@ -1018,9 +1018,9 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ff7e83d9-d511-4eeb-a1b8-9238c1fcc137/base.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/1ff40307-5fd2-4095-b044-a1732f92a5c1/base.js
   var init_base = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ff7e83d9-d511-4eeb-a1b8-9238c1fcc137/base.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/1ff40307-5fd2-4095-b044-a1732f92a5c1/base.js"() {
       if (document.getElementById("9323e01daf") === null) {
         const element = document.createElement("style");
         element.id = "9323e01daf";
@@ -1187,10 +1187,10 @@ svg {
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/9a633ab5-3243-4449-8334-da318e31bf54/styles.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/16a2fcd4-0eeb-4761-9c8e-ae7a1d6d8d3e/styles.js
   var styles_default;
   var init_styles = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/9a633ab5-3243-4449-8334-da318e31bf54/styles.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/16a2fcd4-0eeb-4761-9c8e-ae7a1d6d8d3e/styles.js"() {
       if (document.getElementById("b0ed145564") === null) {
         const element = document.createElement("style");
         element.id = "b0ed145564";
@@ -12000,7 +12000,7 @@ This typically indicates that your device does not have a healthy Internet conne
         function handleSelectedFiles(files) {
           const file = files[0];
           const imageUuid = v4_default();
-          const imageRef = ref(storage, `images/${imageUuid}.jpg`);
+          const imageRef = ref(storage, `images/${imageUuid}.file`);
           uploadBytes(imageRef, file).then((snapshot) => {
             console.log("uploaded a blob or file!");
           });
@@ -12036,6 +12036,37 @@ This typically indicates that your device does not have a healthy Internet conne
     }
   });
 
+  // src/assets/imagePlaceholder.png
+  var imagePlaceholder_default;
+  var init_imagePlaceholder = __esm({
+    "src/assets/imagePlaceholder.png"() {
+      imagePlaceholder_default = "data:image/png;base64,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";
+    }
+  });
+
+  // src/lib/image.ts
+  function toBlob(canvas, type = "image/png", quality = 1) {
+    return new Promise((resolve) => canvas.toBlob((blob) => resolve(blob)));
+  }
+  async function imageToUint8Array(image, context) {
+    context.canvas.height = image.height;
+    context.canvas.width = image.width;
+    context.drawImage(image, 0, 0);
+    const blob = await toBlob(context.canvas, "image/png");
+    return new Uint8Array(await blob.arrayBuffer());
+  }
+  async function getImagePlaceHolderArray() {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    const img = document.getElementById("imagePlaceholder");
+    const Uint8Array2 = await imageToUint8Array(img, context);
+    return Uint8Array2;
+  }
+  var init_image = __esm({
+    "src/lib/image.ts"() {
+    }
+  });
+
   // src/ui.tsx
   var ui_exports = {};
   __export(ui_exports, {
@@ -12044,6 +12075,8 @@ This typically indicates that your device does not have a healthy Internet conne
   function Plugin() {
     const [predictionData, setPredictionData] = m2({});
     const [imageFile, setImageFile] = m2();
+    const [imgPlaceholderArr, setImgPlaceholderArr] = m2(new Uint8Array());
+    let placeHolderArray;
     y2(() => {
       fl(yc2(db3, "predictionData"), (snapshot) => {
         snapshot.docChanges().forEach((change) => {
@@ -12055,9 +12088,10 @@ This typically indicates that your device does not have a healthy Internet conne
       }, (err) => {
         console.log(err);
       });
+      getImagePlaceHolderArray().then((_3) => setImgPlaceholderArr(_3));
     }, []);
     const handleClick = A(async function() {
-      emit("SUBMIT", predictionData);
+      emit("SUBMIT", predictionData, imgPlaceholderArr);
     }, [predictionData]);
     return /* @__PURE__ */ v(Container, null, /* @__PURE__ */ v(VerticalSpace, {
       space: "small"
@@ -12073,8 +12107,9 @@ This typically indicates that your device does not have a healthy Internet conne
     }), /* @__PURE__ */ v("canvas", {
       id: "canvas"
     }), /* @__PURE__ */ v("img", {
-      src: "./assets/image-placeholder.png",
-      id: "placeholderImage"
+      id: "imagePlaceholder",
+      src: imagePlaceholder_default,
+      hidden: true
     }));
   }
   var ui_default;
@@ -12088,6 +12123,8 @@ This typically indicates that your device does not have a healthy Internet conne
       init_dropzone();
       init_index_esm3();
       init_firestore_initialize();
+      init_imagePlaceholder();
+      init_image();
       ui_default = render(Plugin);
     }
   });

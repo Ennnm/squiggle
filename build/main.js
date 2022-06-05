@@ -860,31 +860,24 @@
   });
 
   // src/figma-elements/image.ts
-  function imageElement(data) {
-    const width = data.artBoardWidth * (data.xMax - data.xMin);
-    const height = data.artBoardHeight * (data.yMax - data.yMin);
+  async function imageElement(data, placeHolderArray) {
     const frameProperties = {};
     const frame = frameElement(data, frameProperties);
-    const TextProperties = {
-      containerWidth: width,
-      containerHeight: height,
-      textAlignHorizontal: "JUSTIFIED"
-    };
-    const text = topAlignedTextElement(loremParagraph(1), TextProperties);
-    text.constraints = frame.constraints;
-    frame.appendChild(text);
+    const image = figma.createImage(placeHolderArray);
+    const imageHash = image.hash;
+    const rectangle = frameElement(data, frameProperties);
+    rectangle.fills = [{ type: "IMAGE", scaleMode: "FILL", imageHash }];
+    frame.appendChild(rectangle);
     return frame;
   }
   var init_image = __esm({
     "src/figma-elements/image.ts"() {
       init_frame();
-      init_topAlignedTextElement();
-      init_loremIpsum();
     }
   });
 
   // src/canvas.ts
-  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight) {
+  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight, placeHolderArray) {
     const { boundingBoxData, classType } = predictionData;
     const [yMin, xMin, yMax, xMax] = boundingBoxData;
     const data = {
@@ -905,7 +898,7 @@
         element = frameElement(data, {});
         break;
       case 2 /* image */:
-        element = imageElement(data);
+        element = await imageElement(data, placeHolderArray);
         break;
       case 4 /* text */:
         element = textElement(data);
@@ -940,9 +933,9 @@
   __export(main_exports, {
     default: () => main_default
   });
-  async function generateFigmaElements(data, artBoardWidth, artBoardHeight) {
+  async function generateFigmaElements(data, artBoardWidth, artBoardHeight, placeHolderArray) {
     data.forEach(async (oneFrameData) => {
-      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight);
+      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight, placeHolderArray);
     });
   }
   function artBoardData(artBoard) {
@@ -955,21 +948,21 @@
     };
     return whiteBackgroundFrameData;
   }
-  async function renderElementsOnScreen(predictionData) {
+  async function renderElementsOnScreen(predictionData, placeHolderArray) {
     const data = predictionData.predictionData;
     const artBoard = data[0];
     const artBoardWidth = artBoard.originalImageSize[1];
     const artBoardHeight = artBoard.originalImageSize[0];
     data.unshift(artBoardData(artBoard));
-    return await generateFigmaElements(data, artBoardWidth, artBoardHeight);
+    return await generateFigmaElements(data, artBoardWidth, artBoardHeight, placeHolderArray);
   }
   function main_default() {
-    once("SUBMIT", async function(predictionData) {
+    once("SUBMIT", async function(predictionData, placeHolderArray) {
       const roboto = { family: "Roboto", style: "Bold" };
       const inter = { family: "Inter", style: "Regular" };
       const fonts = [roboto, inter];
       await Promise.all(fonts.map((_) => figma.loadFontAsync(_)));
-      renderElementsOnScreen(predictionData);
+      renderElementsOnScreen(predictionData, placeHolderArray);
       figma.closePlugin();
     });
     showUI({ width: 320, height: 240 });

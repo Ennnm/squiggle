@@ -1,4 +1,4 @@
-import { BoundingBox, FrameProperties, classMap } from "../utils";
+import { BoundingBox, classMap } from "../utils";
 import { frameElement } from "./frame";
 import { centeredTextElement } from './centeredTextElement'
 

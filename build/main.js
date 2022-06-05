@@ -876,8 +876,53 @@
     }
   });
 
+  // src/figma-elements/squareFrame.ts
+  function squareFrameElement(data, { color = white, opacity = 0.4, cornerRadius = 0, stroke = 0, strokeColor = black }) {
+    const frame = figma.createFrame();
+    const width = data.artBoardWidth * (data.xMax - data.xMin);
+    const height = data.artBoardHeight * (data.yMax - data.yMin);
+    const length = (width + height) / 2;
+    frame.resize(length, length);
+    frame.x = data.xMin * data.artBoardWidth + width / 2 - length / 2;
+    frame.y = data.yMin * data.artBoardHeight + height / 2 - length / 2;
+    frame.backgrounds = [];
+    frame.fills = [{ type: "SOLID", color, opacity }];
+    frame.strokeWeight = stroke;
+    frame.strokes = [{ type: "SOLID", color: strokeColor, opacity }];
+    frame.effects = [];
+    frame.name = classMap[data.classType].name;
+    frame.clipsContent = true;
+    frame.cornerRadius = cornerRadius;
+    frame.layoutMode = "HORIZONTAL";
+    return frame;
+  }
+  var init_squareFrame = __esm({
+    "src/figma-elements/squareFrame.ts"() {
+      init_utils();
+      init_colors();
+    }
+  });
+
+  // src/figma-elements/userProfile.ts
+  async function userProfileElement(data, placeHolderArray) {
+    const frameProperties = {};
+    const frame = squareFrameElement(data, frameProperties);
+    frame.cornerRadius = frame.width;
+    const image = figma.createImage(placeHolderArray);
+    const imageHash = image.hash;
+    const rectangle = squareFrameElement(data, frameProperties);
+    rectangle.fills = [{ type: "IMAGE", scaleMode: "FILL", imageHash }];
+    frame.appendChild(rectangle);
+    return frame;
+  }
+  var init_userProfile = __esm({
+    "src/figma-elements/userProfile.ts"() {
+      init_squareFrame();
+    }
+  });
+
   // src/canvas.ts
-  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight, placeHolderArray) {
+  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight, imgAssets) {
     const { boundingBoxData, classType } = predictionData;
     const [yMin, xMin, yMax, xMax] = boundingBoxData;
     const data = {
@@ -898,7 +943,7 @@
         element = frameElement(data, {});
         break;
       case 2 /* image */:
-        element = await imageElement(data, placeHolderArray);
+        element = await imageElement(data, imgAssets.placeholderImage);
         break;
       case 4 /* text */:
         element = textElement(data);
@@ -908,6 +953,11 @@
         break;
       case 6 /* paragraph */:
         element = paragraphElement(data);
+        break;
+      case 7 /* userProfile */:
+        const profileImages = imgAssets.profileImages;
+        const randomImage = profileImages[Math.floor(Math.random() * profileImages.length)];
+        element = await userProfileElement(data, randomImage);
         break;
       default:
         console.log(`classtype: ${classType}`);
@@ -925,6 +975,7 @@
       init_button();
       init_image();
       init_frame();
+      init_userProfile();
     }
   });
 
@@ -933,9 +984,9 @@
   __export(main_exports, {
     default: () => main_default
   });
-  async function generateFigmaElements(data, artBoardWidth, artBoardHeight, placeHolderArray) {
+  async function generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets) {
     data.forEach(async (oneFrameData) => {
-      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight, placeHolderArray);
+      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight, imgAssets);
     });
   }
   function artBoardData(artBoard) {
@@ -948,21 +999,21 @@
     };
     return whiteBackgroundFrameData;
   }
-  async function renderElementsOnScreen(predictionData, placeHolderArray) {
+  async function renderElementsOnScreen(predictionData, imgAssets) {
     const data = predictionData.predictionData;
     const artBoard = data[0];
     const artBoardWidth = artBoard.originalImageSize[1];
     const artBoardHeight = artBoard.originalImageSize[0];
     data.unshift(artBoardData(artBoard));
-    return await generateFigmaElements(data, artBoardWidth, artBoardHeight, placeHolderArray);
+    return await generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets);
   }
   function main_default() {
-    once("SUBMIT", async function(predictionData, placeHolderArray) {
+    once("SUBMIT", async function(predictionData, imgAssets) {
       const roboto = { family: "Roboto", style: "Bold" };
       const inter = { family: "Inter", style: "Regular" };
       const fonts = [roboto, inter];
       await Promise.all(fonts.map((_) => figma.loadFontAsync(_)));
-      renderElementsOnScreen(predictionData, placeHolderArray);
+      renderElementsOnScreen(predictionData, imgAssets);
       figma.closePlugin();
     });
     showUI({ width: 320, height: 240 });

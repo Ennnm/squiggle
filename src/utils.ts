@@ -7,6 +7,10 @@ export interface PredictionDataInterface {
   originalImageSize: number[]
 }
 
+export interface ImageAssets{
+  placeholderImage : Uint8Array,
+  profileImages: Array<Uint8Array>,
+}
 export interface BoundingBox {
   yMin : number,
   xMin : number,
@@ -97,7 +101,7 @@ export enum elementType{
 // // gets all nodes regardless of how deep the selection goes
 // export function getTextNodesFromDeepSelection(node) {
 //   let filtered = []
-  
+
 //   if (isTextNode(node)) {
 //     filtered.push(node)
 //   }
@@ -114,7 +118,7 @@ export enum elementType{
 // // gets all nodes regardless of how deep the selection goes
 // export function getShapeNodesFromDeepSelection(node: any) {
 //   let filtered = []
-  
+
 //   if (isShapeNode(node)) {
 //     if (!nodeIsSourceImage(node)) filtered.push(node)
 //   }
@@ -261,7 +265,7 @@ export enum elementType{
 
 //     if (nodeIsSourceImage(node)) return node
 //     if (nodeIsSourceImage(node.parent)) return node.parent
-    
+
 //     const siblingIsSourceImage = node.parent.children.find(nodeIsSourceImage)
 //     if (siblingIsSourceImage) return siblingIsSourceImage
 
@@ -285,7 +289,7 @@ export enum elementType{
 //   const { width, height, name } = node
 //   return { imageBytes, width, height, name }
 // }
-              
+
 
 // export interface UIColorData {
 //   dominantColor: RGB;

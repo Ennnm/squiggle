@@ -17,17 +17,24 @@ import { AcceptedFileTypes } from './components/dropzone'
 
 import { doc, collection, query, where, onSnapshot } from "firebase/firestore";
 import { db } from '../config/firestore_initialize';
-import { loadImage } from './lib/image'
+import { loadImageAssets } from './lib/image'
 
 import imagePlaceholder from './assets/imagePlaceholder.png'
-
+import tristan from './assets/tristan.jpg'
+import dom from './assets/dom.jpg'
+import en from './assets/en.jpg'
+import { ImageAssets } from './utils'
 import { getImagePlaceHolderArray } from './lib/image'
 
+
+const profileNames = ['tristan', 'en', 'dom'];
 function Plugin() {
   const [predictionData, setPredictionData] = useState({})
   const [imageFile, setImageFile] = useState()
-  const [imgPlaceholderArr, setImgPlaceholderArr] = useState(new Uint8Array)
-  let placeHolderArray: string;
+  const [imgAssets, setImgAssets] = useState({
+    placeholderImage: new Uint8Array,
+    profileImages: new Array<Uint8Array>
+  })
 
   useEffect(() => {
     onSnapshot(
@@ -42,14 +49,16 @@ function Plugin() {
         console.log(err)
       }
     );
-    getImagePlaceHolderArray().then((_)=>setImgPlaceholderArr(_))
+    let placeHolderArray: Uint8Array;
+    let profilePicArray: Array<Uint8Array>;
+    loadImageAssets(profileNames).then((_) => setImgAssets(_)).catch(e => console.log(`error on loading image assets: ${e}`))
   }, []);
   // may not need dependency to work
   const handleClick = useCallback(
     async function () {
       // function to trigger processing of uploaded image on backend
       // await onSnapshot change to update predictionData useState
-      emit('SUBMIT', predictionData, imgPlaceholderArr)      // console.log(await loadImage(imagePlaceholder));
+      emit('SUBMIT', predictionData, imgAssets)      // console.log(await loadImage(imagePlaceholder));
     },
     [predictionData]
   )
@@ -68,6 +77,9 @@ function Plugin() {
       <VerticalSpace space="small" />
       <canvas id="canvas"></canvas>
       <img id='imagePlaceholder' src={imagePlaceholder} hidden></img>
+      <img id='tristan' src={tristan} hidden></img>
+      <img id='en' src={en} hidden></img>
+      <img id='dom' src={dom} hidden></img>
     </Container>
   )
 }

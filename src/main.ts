@@ -38,12 +38,6 @@ async function renderElementsOnScreen(predictionData: any, imgAssets: ImageAsset
 export default function () {
   Promise.all(fontsList().map(_ => figma.loadFontAsync(_)))
   once('SUBMIT', async function (predictionData, imgAssets) {
-
-    // const roboto = { family: 'Roboto', style: 'Bold' }
-    // const inter = { family: "Inter", style: "Regular" }
-    // const fonts = [roboto, inter]
-    // await Promise.all(fonts.map(_ => figma.loadFontAsync(_)))
-
     renderElementsOnScreen(predictionData, imgAssets)
     figma.closePlugin()
   })

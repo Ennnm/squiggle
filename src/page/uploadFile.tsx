@@ -47,7 +47,6 @@ export function UploadFile(props: any) {
     )
     return (
         <Container>
-
             <VerticalSpace space="small" />
             <div class={styles.container}>
                 <AcceptedFileTypes />

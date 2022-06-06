@@ -14,9 +14,8 @@ import { OutputPreferences } from './page/outputPreference';
 function Plugin() {
   const [pageIndex, setPageIndex] = useState(pages.uploadFile);
 
-  function Page(props:any) {
+  function Page(props: any) {
     let page = <UploadFile setPageIndex={setPageIndex} />
-    // let page = <UploadFile setPageIndex={setPageIndex} />
     if (props.pageIndex == pages.outputPreference) {
       page = <OutputPreferences />
     }
@@ -25,8 +24,7 @@ function Plugin() {
 
   return (
     <Container>
-      <Page pageIndex={pageIndex}/>
-
+      <Page pageIndex={pageIndex} />
     </Container>
   )
 }

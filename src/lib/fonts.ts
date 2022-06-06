@@ -1,3 +1,9 @@
+export enum FontTypes {
+    sanSerif,
+    serif,
+    mono
+}
+
 export const fonts: { [name: string]: FontName } = {
     'inter': { family: 'Inter', style: 'Regular' },
     'interBold': { family: 'Inter', style: 'Bold' },

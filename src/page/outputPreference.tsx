@@ -16,16 +16,20 @@ import dom from '../assets/dom.jpg'
 import en from '../assets/en.jpg'
 
 import { loadImageAssets } from '../lib/image'
-import styles from '../styles.css'
-
-
+import { ScreenMode } from '../lib/preferences';
+import { FontTypes } from '../lib/fonts';
 const profileNames = ['tristan', 'en', 'dom'];
+
 export function OutputPreferences() {
     const [predictionData, setPredictionData] = useState({})
     const [imgAssets, setImgAssets] = useState({
         placeholderImage: new Uint8Array,
         profileImages: new Array<Uint8Array>
     })
+    const [screenMode, setScreenMode]= useState(ScreenMode.light)
+    const [color, setColor]= useState()
+    const [fontType, setFontType]= useState(FontTypes.sanSerif)
+
     useEffect(() => {
         onSnapshot(
             collection(db, 'predictionData'), (snapshot) => {
@@ -47,16 +51,13 @@ export function OutputPreferences() {
     // may not need dependency to work
     const handleClick = useCallback(
         async function () {
-            // function to trigger processing of uploaded image on backend
-            // await onSnapshot change to update predictionData useState
-            emit('SUBMIT', predictionData, imgAssets)      // console.log(await loadImage(imagePlaceholder));
+            emit('SUBMIT', predictionData, imgAssets)
         },
         [predictionData]
     )
     return (
         <Container>
             <VerticalSpace space="small" />
-
             <VerticalSpace space="large" />
             <Button fullWidth onClick={handleClick}>
                 Render Elements

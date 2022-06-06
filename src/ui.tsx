@@ -1,85 +1,32 @@
 import {
-  Button,
   Container,
   render,
-  VerticalSpace,
-  Text
+  Text,
 } from '@create-figma-plugin/ui'
-import { emit } from '@create-figma-plugin/utilities'
+
 import { h } from 'preact'
-import { useCallback, useState, useEffect } from 'preact/hooks'
-// import { highlight, languages } from 'prismjs'
-import Editor from 'react-simple-code-editor'
 
-import styles from './styles.css'
-// import { InsertCodeHandler } from './types'
-import { AcceptedFileTypes } from './components/dropzone'
+import { UploadFile } from './page/uploadFile'
+import { useEffect, useState } from 'preact/hooks';
+import { pageIndex as pages } from './page/pageIndex'
+import { OutputPreferences } from './page/outputPreference';
 
-import { doc, collection, query, where, onSnapshot } from "firebase/firestore";
-import { db } from '../config/firestore_initialize';
-import { loadImageAssets } from './lib/image'
-
-import imagePlaceholder from './assets/imagePlaceholder.png'
-import tristan from './assets/tristan.jpg'
-import dom from './assets/dom.jpg'
-import en from './assets/en.jpg'
-import { ImageAssets } from './utils'
-import { getImagePlaceHolderArray } from './lib/image'
-
-
-const profileNames = ['tristan', 'en', 'dom'];
 function Plugin() {
-  const [predictionData, setPredictionData] = useState({})
-  const [imageFile, setImageFile] = useState()
-  const [imgAssets, setImgAssets] = useState({
-    placeholderImage: new Uint8Array,
-    profileImages: new Array<Uint8Array>
-  })
+  const [pageIndex, setPageIndex] = useState(pages.uploadFile);
 
-  useEffect(() => {
-    onSnapshot(
-      collection(db, 'predictionData'), (snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === "added") {
-            setPredictionData(change.doc.data())
-            console.log("Received new prediction data: ", change.doc.data())
-          }
-        })
-      }, (err) => {
-        console.log(err)
-      }
-    );
-    let placeHolderArray: Uint8Array;
-    let profilePicArray: Array<Uint8Array>;
-    loadImageAssets(profileNames).then((_) => setImgAssets(_)).catch(e => console.log(`error on loading image assets: ${e}`))
-  }, []);
-  // may not need dependency to work
-  const handleClick = useCallback(
-    async function () {
-      // function to trigger processing of uploaded image on backend
-      // await onSnapshot change to update predictionData useState
-      emit('SUBMIT', predictionData, imgAssets)      // console.log(await loadImage(imagePlaceholder));
-    },
-    [predictionData]
-  )
+  function Page(props:any) {
+    let page = <UploadFile setPageIndex={setPageIndex} />
+    // let page = <UploadFile setPageIndex={setPageIndex} />
+    if (props.pageIndex == pages.outputPreference) {
+      page = <OutputPreferences />
+    }
+    return page
+  }
+
   return (
     <Container>
-      <VerticalSpace space="small" />
-      <div class={styles.container}>
+      <Page pageIndex={pageIndex}/>
 
-        <AcceptedFileTypes />
-      </div>
-
-      <VerticalSpace space="large" />
-      <Button fullWidth onClick={handleClick}>
-        Upload
-      </Button>
-      <VerticalSpace space="small" />
-      <canvas id="canvas"></canvas>
-      <img id='imagePlaceholder' src={imagePlaceholder} hidden></img>
-      <img id='tristan' src={tristan} hidden></img>
-      <img id='en' src={en} hidden></img>
-      <img id='dom' src={dom} hidden></img>
     </Container>
   )
 }

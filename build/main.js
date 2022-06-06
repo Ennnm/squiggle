@@ -979,6 +979,22 @@
     }
   });
 
+  // src/lib/fonts.ts
+  function fontsList() {
+    return Object.values(fonts);
+  }
+  var fonts;
+  var init_fonts = __esm({
+    "src/lib/fonts.ts"() {
+      fonts = {
+        "inter": { family: "Inter", style: "Regular" },
+        "interBold": { family: "Inter", style: "Bold" },
+        "notoSerif": { family: "Noto Serif", style: "Regular" },
+        "ibmPlexMono": { family: "IBM Plex Mono", style: "Regular" }
+      };
+    }
+  });
+
   // src/main.ts
   var main_exports = {};
   __export(main_exports, {
@@ -1008,11 +1024,8 @@
     return await generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets);
   }
   function main_default() {
+    Promise.all(fontsList().map((_) => figma.loadFontAsync(_)));
     once("SUBMIT", async function(predictionData, imgAssets) {
-      const roboto = { family: "Roboto", style: "Bold" };
-      const inter = { family: "Inter", style: "Regular" };
-      const fonts = [roboto, inter];
-      await Promise.all(fonts.map((_) => figma.loadFontAsync(_)));
       renderElementsOnScreen(predictionData, imgAssets);
       figma.closePlugin();
     });
@@ -1022,6 +1035,7 @@
     "src/main.ts"() {
       init_lib();
       init_canvas();
+      init_fonts();
     }
   });
 

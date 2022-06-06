@@ -1,3 +1,4 @@
+import { ImageAssets } from "../utils";
 
 function toBlob(canvas: HTMLCanvasElement, type = "image/png", quality = 1): Promise<Blob> {
     return new Promise((resolve) => canvas.toBlob(blob => resolve(blob as Blob)))
@@ -7,8 +8,7 @@ async function imageToUint8Array(image: HTMLImageElement, context: CanvasRenderi
     context.canvas.height = image.height;
     context.canvas.width = image.width;
     context.drawImage(image, 0, 0);
-
-    const blob = await toBlob(context.canvas, "image/png");
+    const blob = await toBlob(context.canvas, "image/jpg");
     return new Uint8Array(await blob.arrayBuffer());
 }
 
@@ -21,11 +21,12 @@ function addImageProcess(src: string, context: CanvasRenderingContext2D){
     })
   }
 
-export async function loadImage(src: string) {
+export async function loadImageToUint8Array(id: string) {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d") as CanvasRenderingContext2D;
-    // await image.
-    const Uint8Array = await addImageProcess(src, context);
+    const img = document.getElementById(id) as HTMLImageElement
+
+    const Uint8Array =  await imageToUint8Array(img, context)
     return Uint8Array
 }
 
@@ -36,6 +37,20 @@ export async function getImagePlaceHolderArray(){
 
     const Uint8Array =  await imageToUint8Array(img, context)
     return Uint8Array
+}
+
+export async function loadImages(ids: Array<string>){
+    const uintImages =ids.map(id=>loadImageToUint8Array(id));
+    return await Promise.all(uintImages);
+}
+
+export async function loadImageAssets(ids: Array<string>) : Promise<ImageAssets>{
+    const imagePlaceholder = await getImagePlaceHolderArray();
+    const profilePictures = await loadImages(ids);
+    return {
+        placeholderImage: imagePlaceholder,
+        profileImages: profilePictures
+    }
 }
 
 export async function getImageData(file:File) {

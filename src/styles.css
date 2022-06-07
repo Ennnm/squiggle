@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Inter");
+@import url("https://fonts.googleapis.com/css?family=Noto+Serif");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono");
+
+h2 {
+  font-size: 18px;
+}
+p {
+  font-size: 11px;
+}
+
 .container {
   height: 164px;
   overflow: auto;
@@ -7,4 +18,102 @@
   min-height: 100%;
   font-size: var(--font-size-12);
   font-family: var(--font-family-code);
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  background-color: white;
+}
+
+.menu-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0px;
+}
+
+.square-button {
+  width: 25px;
+  height: 25px;
+  margin: 0px 5px;
+  border-radius: 2px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 40%;
+}
+
+.sansserif {
+  font-family: "Inter";
+  font-size: small;
+}
+
+.serif {
+  font-family: "Noto Serif";
+  font-size: small;
+}
+
+.mono {
+  font-family: "IBM Plex Mono";
+  font-size: small;
+}
+
+.input {
+  width: 60px;
+  height: 25px;
+  border: 1px solid rgb(107, 107, 107);
+  border-radius: 2px;
+  padding: 0px 6px;
+  margin: 0px 5px;
+}
+
+.black {
+  background-color: rgb(88, 88, 88);
+  color: white;
+}
+
+.white {
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(119, 119, 119);
+}
+
+.light-grey {
+  background-color: #e8e9fa;
+  color: black;
+}
+
+.green {
+  background-color: #88e0af;
+  color: black;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #e8e9fa;
+  width: 100%;
+  height: 140px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  justify-content: space-evenly;
+}
+
+.display-button {
+  width: 50%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 10px;
+  background-color: #88e0af;
+  color: black;
 }

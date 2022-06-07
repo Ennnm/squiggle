@@ -42,6 +42,6 @@ export default function () {
     figma.closePlugin()
   })
 
-  showUI({ width: 320, height: 240 })
+  showUI({ width: 320, height: 400 })
 
 }

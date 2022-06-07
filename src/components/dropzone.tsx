@@ -1,9 +1,10 @@
-import { h } from 'preact'
+import { h } from 'preact';
 import { FileUploadDropzone, Text, VerticalSpace } from '@create-figma-plugin/ui'
 // import styles from './styles.css'
 import { v4 as uuidv4 } from 'uuid'
 import { ref, uploadBytes } from "firebase/storage"
 import { storage } from "../../config/storage_initialize"
+import React from 'react';
 
 
 export const AcceptedFileTypes = function () {

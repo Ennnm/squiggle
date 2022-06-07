@@ -4,6 +4,7 @@ import {
   Text,
 } from '@create-figma-plugin/ui'
 
+import React from 'react';
 import { h } from 'preact'
 
 import { UploadFile } from './page/uploadFile'

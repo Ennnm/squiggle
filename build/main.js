@@ -1029,7 +1029,7 @@
       renderElementsOnScreen(predictionData, imgAssets);
       figma.closePlugin();
     });
-    showUI({ width: 320, height: 240 });
+    showUI({ width: 320, height: 400 });
   }
   var init_main = __esm({
     "src/main.ts"() {

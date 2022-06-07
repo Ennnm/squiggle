@@ -443,10 +443,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/0ac40122-5c2e-44f6-9ec5-c19b55ca3bcf/loading-indicator.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ae89c549-c12c-4220-801b-5bc212b8d4ec/loading-indicator.js
   var loading_indicator_default;
   var init_loading_indicator = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/0ac40122-5c2e-44f6-9ec5-c19b55ca3bcf/loading-indicator.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ae89c549-c12c-4220-801b-5bc212b8d4ec/loading-indicator.js"() {
       if (document.getElementById("060089a544") === null) {
         const element = document.createElement("style");
         element.id = "060089a544";
@@ -520,10 +520,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/28d2d3b2-83ee-4575-bae7-a89369e8bc6a/button.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/1897e964-c007-4cda-bfe6-c92fb96e547d/button.js
   var button_default;
   var init_button = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/28d2d3b2-83ee-4575-bae7-a89369e8bc6a/button.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/1897e964-c007-4cda-bfe6-c92fb96e547d/button.js"() {
       if (document.getElementById("cad4ebc620") === null) {
         const element = document.createElement("style");
         element.id = "cad4ebc620";
@@ -672,10 +672,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a4e58100-42d4-4a2b-82f6-e35242db47a2/file-upload-dropzone.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/12ce041a-6e9b-4650-ae48-da997e6a4359/file-upload-dropzone.js
   var file_upload_dropzone_default;
   var init_file_upload_dropzone = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/a4e58100-42d4-4a2b-82f6-e35242db47a2/file-upload-dropzone.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/12ce041a-6e9b-4650-ae48-da997e6a4359/file-upload-dropzone.js"() {
       if (document.getElementById("2221292a2e") === null) {
         const element = document.createElement("style");
         element.id = "2221292a2e";
@@ -797,10 +797,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/4986a498-8b44-4118-b637-b29746ba5f55/container.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/25d34738-cc6e-44d1-a2c0-c64a341709ac/container.js
   var container_default;
   var init_container = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/4986a498-8b44-4118-b637-b29746ba5f55/container.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/25d34738-cc6e-44d1-a2c0-c64a341709ac/container.js"() {
       if (document.getElementById("2130edf028") === null) {
         const element = document.createElement("style");
         element.id = "2130edf028";
@@ -843,10 +843,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ecd9d196-740a-43d9-9e54-6da99daf2a3d/vertical-space.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/e3eb3c58-a154-4012-9ab5-adcf6ca0b910/vertical-space.js
   var vertical_space_default;
   var init_vertical_space = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ecd9d196-740a-43d9-9e54-6da99daf2a3d/vertical-space.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/e3eb3c58-a154-4012-9ab5-adcf6ca0b910/vertical-space.js"() {
       if (document.getElementById("4a51e5b19a") === null) {
         const element = document.createElement("style");
         element.id = "4a51e5b19a";
@@ -889,10 +889,10 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/9c735ec0-4f12-446b-b144-8dd19cb82c09/text.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/5999217f-a633-4815-92d6-1d4b4d5ed52b/text.js
   var text_default;
   var init_text = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/9c735ec0-4f12-446b-b144-8dd19cb82c09/text.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/5999217f-a633-4815-92d6-1d4b4d5ed52b/text.js"() {
       if (document.getElementById("2d89b2a498") === null) {
         const element = document.createElement("style");
         element.id = "2d89b2a498";
@@ -1018,9 +1018,9 @@
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ff55e21b-1b96-414e-b596-e07993d08435/base.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/58393775-6f44-4024-863c-c92a6954ea1e/base.js
   var init_base = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/ff55e21b-1b96-414e-b596-e07993d08435/base.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/58393775-6f44-4024-863c-c92a6954ea1e/base.js"() {
       if (document.getElementById("9323e01daf") === null) {
         const element = document.createElement("style");
         element.id = "9323e01daf";
@@ -1219,10 +1219,10 @@ svg {
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/c24e7564-73dc-49ad-a965-e9e2d568e4e2/styles.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/7fbbece6-aa4b-4fe4-8bc2-5e11f057fe62/styles.js
   var styles_default;
   var init_styles = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/c24e7564-73dc-49ad-a965-e9e2d568e4e2/styles.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/7fbbece6-aa4b-4fe4-8bc2-5e11f057fe62/styles.js"() {
       if (document.getElementById("b0ed145564") === null) {
         const element = document.createElement("style");
         element.id = "b0ed145564";
@@ -7911,10 +7911,10 @@ ${this.customData.serverResponse}`;
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/c8617096-1ca8-4d17-aa5e-18b8db68b1d0/styles.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d93b0b15-4501-49b9-a8bb-14121e31cc4c/styles.js
   var styles_default2;
   var init_styles2 = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/c8617096-1ca8-4d17-aa5e-18b8db68b1d0/styles.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/d93b0b15-4501-49b9-a8bb-14121e31cc4c/styles.js"() {
       if (document.getElementById("b0ed145564") === null) {
         const element = document.createElement("style");
         element.id = "b0ed145564";
@@ -8132,10 +8132,10 @@ p {
     }
   });
 
-  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/480a1381-e242-410b-a621-fdbd795929ef/styles.js
+  // ../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/8e5cbd1f-5618-4173-a7d6-c103966c9755/styles.js
   var styles_default3;
   var init_styles3 = __esm({
-    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/480a1381-e242-410b-a621-fdbd795929ef/styles.js"() {
+    "../../../../../../../private/var/folders/18/6mm9lhvs20q5qjp5h37fpdc00000gn/T/8e5cbd1f-5618-4173-a7d6-c103966c9755/styles.js"() {
       if (document.getElementById("b0ed145564") === null) {
         const element = document.createElement("style");
         element.id = "b0ed145564";
@@ -8322,7 +8322,12 @@ p {
       loadImageAssets(profileNames).then((_3) => setImgAssets(_3)).catch((e3) => console.log(`error on loading image assets: ${e3}`));
     }, []);
     const handleClick = A(async function() {
-      emit("SUBMIT", predictionData, imgAssets);
+      const stylePreference = {
+        screenMode,
+        color,
+        fontSet
+      };
+      emit("SUBMIT", predictionData, imgAssets, stylePreference);
     }, [predictionData]);
     console.log("in output pref");
     return /* @__PURE__ */ v(Container, null, /* @__PURE__ */ v(VerticalSpace, {
@@ -8333,7 +8338,14 @@ p {
       space: "large"
     }), /* @__PURE__ */ v(Button, {
       fullWidth: true,
-      onClick: handleClick
+      onClick: () => {
+        const stylePreference = {
+          screenMode,
+          color,
+          fontSet
+        };
+        emit("SUBMIT", predictionData, imgAssets, stylePreference);
+      }
     }, "Render Elements"), /* @__PURE__ */ v(VerticalSpace, {
       space: "small"
     }), /* @__PURE__ */ v("canvas", {

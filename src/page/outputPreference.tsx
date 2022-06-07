@@ -70,7 +70,13 @@ export function OutputPreferences() {
     // may not need dependency to work
     const handleClick = useCallback(
         async function () {
-            emit('SUBMIT', predictionData, imgAssets)
+            const stylePreference = {
+                screenMode,
+                color,
+                fontSet
+            }
+
+            emit('SUBMIT', predictionData, imgAssets, stylePreference)
         },
         [predictionData]
     )
@@ -84,14 +90,19 @@ export function OutputPreferences() {
             <Display {...toggleMenuProps} />
             <ToggleMenu {...toggleMenuProps} />
             <VerticalSpace space="large" />
-            <Button fullWidth onClick={handleClick}>
+            <Button fullWidth onClick={()=> {
+            const stylePreference = {
+                screenMode,
+                color,
+                fontSet
+            }
+
+            emit('SUBMIT', predictionData, imgAssets, stylePreference)
+        }}>
+            {/* <Button fullWidth onClick={handleClick}> */}
                 Render Elements
             </Button>
             <VerticalSpace space="small" />
-            {/* <p style="font-family:Inter; font-weight:regular">A inter</p>
-            <p style="font-family:Inter; font-weight:bold">A interbold</p>
-            <p style="font-family:Noto Serif; font-weight:regular">A notoserif</p>
-            <p style="font-family:IBM Plex Mono; font-weight:regular">A ibm</p> */}
             <canvas id="canvas"></canvas>
             <img id='imagePlaceholder' src={imagePlaceholder} hidden></img>
             <img id='tristan' src={tristan} hidden></img>

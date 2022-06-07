@@ -26,17 +26,18 @@ export interface Color{
   b: number
 }
 export interface FrameProperties{
-  color? : RGB,
+  color? : string,
   opacity? :number,
   cornerRadius?: number,
   stroke?: number
-  strokeColor?: RGB
+  strokeColor?: string
 }
 
 export interface TextProperties{
   containerWidth:number,
   containerHeight:number,
-  textColor?: RGB,
+  fontName?: FontName,
+  textColor?: string,
   fontSize?:number,
   textAlignHorizontal?: 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFIED'
 }

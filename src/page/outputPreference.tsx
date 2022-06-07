@@ -18,8 +18,8 @@ import dom from '../assets/dom.jpg'
 import en from '../assets/en.jpg'
 
 import { loadImageAssets } from '../lib/image'
-import { ScreenMode } from '../lib/preferences';
-import { FontTypes } from '../lib/fonts';
+import { screenModeColor } from '../lib/preferences';
+import { FontSets, FontTypes } from '../lib/fonts';
 const profileNames = ['tristan', 'en', 'dom'];
 import ToggleMenu from "../components/togglemenu";
 import Display from "../components/display";
@@ -35,20 +35,21 @@ export function OutputPreferences() {
         placeholderImage: new Uint8Array,
         profileImages: new Array<Uint8Array>
     })
-    const [screenMode, setScreenMode]= useState(ScreenMode.light)
-    const [color, setColor]= useState('')
-    const [fontType, setFontType]= useState(FontTypes.sanSerif)
+    const [screenMode, setScreenMode]= useState(screenModeColor.light)
+    const [color, setColor]= useState('#88e0af')
+    const [fontSet, setFontSet]= useState(FontSets.sanSerif)
 
     const toggleMenuProps = {
         screenMode,
         setScreenMode,
         color,
         setColor,
-        fontType,
-        setFontType
+        fontSet,
+        setFontSet
     }
 
     useEffect(() => {
+        console.log(fontSet)
         // onSnapshot(
         //     collection(db, 'predictionData'), (snapshot) => {
         //         snapshot.docChanges().forEach((change) => {
@@ -69,25 +70,39 @@ export function OutputPreferences() {
     // may not need dependency to work
     const handleClick = useCallback(
         async function () {
-            emit('SUBMIT', predictionData, imgAssets)
+            const stylePreference = {
+                screenMode,
+                color,
+                fontSet
+            }
+
+            emit('SUBMIT', predictionData, imgAssets, stylePreference)
         },
         [predictionData]
     )
+    console.log('in output pref')
     return (
         <Container>
             <VerticalSpace space="small" />
             <VerticalSpace space="large" />
+            {/* <Display screenMode={screenMode} color={color} fontSet={fontSet} />
+            <ToggleMenu {...toggleMenuProps} /> */}
             <Display {...toggleMenuProps} />
             <ToggleMenu {...toggleMenuProps} />
             <VerticalSpace space="large" />
-            <Button fullWidth onClick={handleClick}>
+            <Button fullWidth onClick={()=> {
+            const stylePreference = {
+                screenMode,
+                color,
+                fontSet
+            }
+
+            emit('SUBMIT', predictionData, imgAssets, stylePreference)
+        }}>
+            {/* <Button fullWidth onClick={handleClick}> */}
                 Render Elements
             </Button>
             <VerticalSpace space="small" />
-            {/* <p style="font-family:Inter; font-weight:regular">A inter</p>
-            <p style="font-family:Inter; font-weight:bold">A interbold</p>
-            <p style="font-family:Noto Serif; font-weight:regular">A notoserif</p>
-            <p style="font-family:IBM Plex Mono; font-weight:regular">A ibm</p> */}
             <canvas id="canvas"></canvas>
             <img id='imagePlaceholder' src={imagePlaceholder} hidden></img>
             <img id='tristan' src={tristan} hidden></img>

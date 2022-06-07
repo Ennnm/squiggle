@@ -107,6 +107,7 @@ p {
   margin-bottom: 20px;
   padding: 12px 20px;
   justify-content: space-evenly;
+  border: dashed 1px;
 }
 
 .display-button {

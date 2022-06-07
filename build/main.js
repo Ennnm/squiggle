@@ -26,6 +26,49 @@
   var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
+  // node_modules/hex-rgb/index.js
+  function hexRgb(hex, options = {}) {
+    if (typeof hex !== "string" || nonHexChars.test(hex) || !validHexSize.test(hex)) {
+      throw new TypeError("Expected a valid hex string");
+    }
+    hex = hex.replace(/^#/, "");
+    let alphaFromHex = 1;
+    if (hex.length === 8) {
+      alphaFromHex = Number.parseInt(hex.slice(6, 8), 16) / 255;
+      hex = hex.slice(0, 6);
+    }
+    if (hex.length === 4) {
+      alphaFromHex = Number.parseInt(hex.slice(3, 4).repeat(2), 16) / 255;
+      hex = hex.slice(0, 3);
+    }
+    if (hex.length === 3) {
+      hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    const number = Number.parseInt(hex, 16);
+    const red = number >> 16;
+    const green = number >> 8 & 255;
+    const blue = number & 255;
+    const alpha = typeof options.alpha === "number" ? options.alpha : alphaFromHex;
+    if (options.format === "array") {
+      return [red, green, blue, alpha];
+    }
+    if (options.format === "css") {
+      const alphaString = alpha === 1 ? "" : ` / ${Number((alpha * 100).toFixed(2))}%`;
+      return `rgb(${red} ${green} ${blue}${alphaString})`;
+    }
+    return { red, green, blue, alpha };
+  }
+  var hexCharacters, match3or4Hex, match6or8Hex, nonHexChars, validHexSize;
+  var init_hex_rgb = __esm({
+    "node_modules/hex-rgb/index.js"() {
+      hexCharacters = "a-f\\d";
+      match3or4Hex = `#?[${hexCharacters}]{3}[${hexCharacters}]?`;
+      match6or8Hex = `#?[${hexCharacters}]{6}([${hexCharacters}]{2})?`;
+      nonHexChars = new RegExp(`[^#${hexCharacters}]`, "gi");
+      validHexSize = new RegExp(`^${match3or4Hex}$|^${match6or8Hex}$`, "i");
+    }
+  });
+
   // node_modules/@create-figma-plugin/utilities/lib/events.js
   function on(name, handler) {
     const id = `${currentId}`;
@@ -131,26 +174,38 @@
   });
 
   // src/lib/colors.ts
+  function getRGBFromHex(hex) {
+    const rgbaColor = hexRgb(hex);
+    const rgbColor = {
+      r: rgbaColor.red / 255,
+      b: rgbaColor.blue / 255,
+      g: rgbaColor.green / 255
+    };
+    return rgbColor;
+  }
   var black, white;
   var init_colors = __esm({
     "src/lib/colors.ts"() {
-      black = { r: 0, b: 0, g: 0 };
-      white = { r: 1, b: 1, g: 1 };
+      init_hex_rgb();
+      black = "#000000";
+      white = "#FFFFFF";
     }
   });
 
   // src/figma-elements/frame.ts
-  function frameElement(data, { color = white, opacity = 0.4, cornerRadius = 0, stroke = 0, strokeColor = black }) {
+  function frameElement(data, { color = white, opacity = 0, cornerRadius = 0, stroke = 0, strokeColor = black }) {
     const frame = figma.createFrame();
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
+    const rgbColor = getRGBFromHex(color);
+    const rgbStrokeColor = getRGBFromHex(strokeColor);
     frame.resize(width, height);
     frame.x = data.xMin * data.artBoardWidth;
     frame.y = data.yMin * data.artBoardHeight;
     frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color, opacity }];
+    frame.fills = [{ type: "SOLID", color: rgbColor, opacity }];
     frame.strokeWeight = stroke;
-    frame.strokes = [{ type: "SOLID", color: strokeColor, opacity }];
+    frame.strokes = [{ type: "SOLID", color: rgbStrokeColor, opacity }];
     frame.effects = [];
     frame.name = classMap[data.classType].name;
     frame.clipsContent = true;
@@ -166,15 +221,17 @@
   });
 
   // src/figma-elements/centeredTextElement.ts
-  function centeredTextElement(text, { containerWidth, containerHeight, textColor = black, fontSize = 12, textAlignHorizontal = "CENTER" }) {
+  function centeredTextElement(text, { containerWidth, containerHeight, fontName, textColor = black, fontSize = 12, textAlignHorizontal = "CENTER" }) {
+    const rgbColor = getRGBFromHex(textColor);
     const textElement2 = figma.createText();
+    textElement2.fontName = fontName;
     textElement2.textAlignHorizontal = textAlignHorizontal;
     textElement2.textAlignVertical = "CENTER";
     textElement2.resize(containerWidth, containerHeight);
     textElement2.fontSize = fontSize;
     textElement2.x = 0;
     textElement2.y = 0;
-    textElement2.fills = [{ type: "SOLID", color: textColor }];
+    textElement2.fills = [{ type: "SOLID", color: rgbColor }];
     textElement2.characters = text;
     textElement2.constrainProportions = true;
     return textElement2;
@@ -186,18 +243,22 @@
   });
 
   // src/figma-elements/h1.ts
-  function h1Element(data) {
+  function h1Element(data, screenMode, fontSet) {
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     const frameProperties = {
       stroke: 1
     };
     const frame = frameElement(data, frameProperties);
+    console.log(screenMode);
     const TextProperties = {
       containerWidth: width,
-      containerHeight: height
+      containerHeight: height,
+      textColor: screenMode.textColor,
+      fontSize: 48,
+      fontName: fontSet.heading
     };
-    const text = centeredTextElement("Heading1", TextProperties);
+    const text = centeredTextElement("Heading", TextProperties);
     frame.appendChild(text);
     return frame;
   }
@@ -209,20 +270,22 @@
   });
 
   // src/figma-elements/topAlignedTextElement.ts
-  function topAlignedTextElement(text, { containerWidth, containerHeight, textColor = { r: 0, g: 0, b: 0 }, fontSize = 12, textAlignHorizontal = "CENTER" }) {
+  function topAlignedTextElement(text, { containerWidth, containerHeight, fontName, textColor = "#FFFFFF", fontSize = 12, textAlignHorizontal = "CENTER" }) {
+    const rgbColor = getRGBFromHex(textColor);
     const textElement2 = figma.createText();
-    textElement2.textAlignHorizontal = "CENTER";
+    textElement2.fontName = fontName, textElement2.textAlignHorizontal = "CENTER";
     textElement2.resize(containerWidth, containerHeight);
     textElement2.fontSize = fontSize;
     textElement2.x = 0;
     textElement2.y = containerHeight / 2 - fontSize / 2;
-    textElement2.fills = [{ type: "SOLID", color: textColor }];
+    textElement2.fills = [{ type: "SOLID", color: rgbColor }];
     textElement2.characters = text;
     textElement2.constrainProportions = true;
     return textElement2;
   }
   var init_topAlignedTextElement = __esm({
     "src/figma-elements/topAlignedTextElement.ts"() {
+      init_colors();
     }
   });
 
@@ -786,7 +849,7 @@
   });
 
   // src/figma-elements/paragraph.ts
-  function paragraphElement(data) {
+  function paragraphElement(data, screenMode, fontSet) {
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     const frameProperties = {};
@@ -794,7 +857,10 @@
     const TextProperties = {
       containerWidth: width,
       containerHeight: height,
-      textAlignHorizontal: "JUSTIFIED"
+      textAlignHorizontal: "JUSTIFIED",
+      textColor: screenMode.textColor,
+      fontSize: 24,
+      fontName: fontSet.body
     };
     const text = topAlignedTextElement(loremParagraph(1), TextProperties);
     text.constraints = frame.constraints;
@@ -810,7 +876,7 @@
   });
 
   // src/figma-elements/text.ts
-  function textElement(data) {
+  function textElement(data, screenMode, fontSet) {
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     const frameProperties = {
@@ -819,7 +885,10 @@
     const frame = frameElement(data, frameProperties);
     const TextProperties = {
       containerWidth: width,
-      containerHeight: height
+      containerHeight: height,
+      textColor: screenMode.textColor,
+      fontSize: 24,
+      fontName: fontSet.body
     };
     const text = topAlignedTextElement(loremSentence(1), TextProperties);
     text.constraints = frame.constraints;
@@ -835,17 +904,20 @@
   });
 
   // src/figma-elements/button.ts
-  function buttonElement(data) {
+  function buttonElement(data, stylePreference) {
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     const frameProperties = {
-      color: classMap[data.classType].color,
+      color: stylePreference.color,
+      opacity: 1,
       cornerRadius: height / 2
     };
     const frame = frameElement(data, frameProperties);
     const TextProperties = {
       containerWidth: width,
-      containerHeight: height
+      containerHeight: height,
+      fontName: stylePreference.fontSet.body,
+      textColor: stylePreference.screenMode.textColor
     };
     const text = centeredTextElement("Button", TextProperties);
     frame.appendChild(text);
@@ -853,7 +925,6 @@
   }
   var init_button = __esm({
     "src/figma-elements/button.ts"() {
-      init_utils();
       init_frame();
       init_centeredTextElement();
     }
@@ -882,13 +953,15 @@
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     const length = (width + height) / 2;
+    const rgbColor = getRGBFromHex(color);
+    const rgbStrokeColor = getRGBFromHex(strokeColor);
     frame.resize(length, length);
     frame.x = data.xMin * data.artBoardWidth + width / 2 - length / 2;
     frame.y = data.yMin * data.artBoardHeight + height / 2 - length / 2;
     frame.backgrounds = [];
-    frame.fills = [{ type: "SOLID", color, opacity }];
+    frame.fills = [{ type: "SOLID", color: rgbColor, opacity }];
     frame.strokeWeight = stroke;
-    frame.strokes = [{ type: "SOLID", color: strokeColor, opacity }];
+    frame.strokes = [{ type: "SOLID", color: rgbStrokeColor, opacity }];
     frame.effects = [];
     frame.name = classMap[data.classType].name;
     frame.clipsContent = true;
@@ -922,9 +995,10 @@
   });
 
   // src/canvas.ts
-  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight, imgAssets) {
+  async function generateFigmaElement(predictionData, artBoardWidth, artBoardHeight, imgAssets, stylePreference) {
     const { boundingBoxData, classType } = predictionData;
     const [yMin, xMin, yMax, xMax] = boundingBoxData;
+    const { screenMode, color, fontSet } = stylePreference;
     const data = {
       yMin,
       xMin,
@@ -937,22 +1011,22 @@
     let element = null;
     switch (classType) {
       case 1 /* button */:
-        element = buttonElement(data);
+        element = buttonElement(data, stylePreference);
         break;
       case 13 /* backgroundFrame */:
-        element = frameElement(data, {});
+        element = frameElement(data, { color: screenMode.backgroundColor, opacity: 1 });
         break;
       case 2 /* image */:
         element = await imageElement(data, imgAssets.placeholderImage);
         break;
       case 4 /* text */:
-        element = textElement(data);
+        element = textElement(data, screenMode, fontSet);
         break;
       case 5 /* h1 */:
-        element = h1Element(data);
+        element = h1Element(data, screenMode, fontSet);
         break;
       case 6 /* paragraph */:
-        element = paragraphElement(data);
+        element = paragraphElement(data, screenMode, fontSet);
         break;
       case 7 /* userProfile */:
         const profileImages = imgAssets.profileImages;
@@ -983,7 +1057,7 @@
   function fontsList() {
     return Object.values(fonts);
   }
-  var fonts;
+  var fonts, FontSets;
   var init_fonts = __esm({
     "src/lib/fonts.ts"() {
       fonts = {
@@ -991,6 +1065,23 @@
         "interBold": { family: "Inter", style: "Bold" },
         "notoSerif": { family: "Noto Serif", style: "Regular" },
         "ibmPlexMono": { family: "IBM Plex Mono", style: "Regular" }
+      };
+      FontSets = {
+        "sanSerif": {
+          "name": "sanSerif",
+          "heading": fonts.interBold,
+          "body": fonts.inter
+        },
+        "serif": {
+          "name": "serif",
+          "heading": fonts.notoSerif,
+          "body": fonts.inter
+        },
+        "mono": {
+          "name": "mono",
+          "heading": fonts.ibmPlexMono,
+          "body": fonts.inter
+        }
       };
     }
   });
@@ -1000,9 +1091,9 @@
   __export(main_exports, {
     default: () => main_default
   });
-  async function generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets) {
+  async function generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets, stylePreference) {
     data.forEach(async (oneFrameData) => {
-      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight, imgAssets);
+      await generateFigmaElement(oneFrameData, artBoardWidth, artBoardHeight, imgAssets, stylePreference);
     });
   }
   function artBoardData(artBoard) {
@@ -1015,18 +1106,21 @@
     };
     return whiteBackgroundFrameData;
   }
-  async function renderElementsOnScreen(predictionData, imgAssets) {
+  async function renderElementsOnScreen(predictionData, imgAssets, stylePreference) {
     const data = predictionData.predictionData;
     const artBoard = data[0];
     const artBoardWidth = artBoard.originalImageSize[1];
     const artBoardHeight = artBoard.originalImageSize[0];
     data.unshift(artBoardData(artBoard));
-    return await generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets);
+    return await generateFigmaElements(data, artBoardWidth, artBoardHeight, imgAssets, stylePreference);
   }
   function main_default() {
     Promise.all(fontsList().map((_) => figma.loadFontAsync(_)));
-    once("SUBMIT", async function(predictionData, imgAssets) {
-      renderElementsOnScreen(predictionData, imgAssets);
+    once("SUBMIT", async function(predictionData, imgAssets, stylePreference) {
+      console.log("ddddddd");
+      console.log(stylePreference);
+      console.log("ddddddd");
+      renderElementsOnScreen(predictionData, imgAssets, stylePreference);
       figma.closePlugin();
     });
     showUI({ width: 320, height: 400 });

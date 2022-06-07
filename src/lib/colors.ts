@@ -1,5 +1,19 @@
-export const black = { r: 0, b: 0, g: 0 }
-export const white = { r: 1, b: 1, g: 1 }
+import hexRgb from "hex-rgb";
+
+export const black = "#000000"
+export const white = "#FFFFFF"
+// export const black = { r: 0, b: 0, g: 0 }
+// export const white = { r: 1, b: 1, g: 1 }
+export function getRGBFromHex(hex: string): RGB {
+  const rgbaColor = hexRgb(hex)
+  const rgbColor = {
+    r: rgbaColor.red / 255,
+    b: rgbaColor.blue / 255,
+    g: rgbaColor.green / 255
+  }
+  return rgbColor;
+
+}
 
 export interface RGB {
   r: number;
@@ -13,7 +27,7 @@ interface Tint {
 }
 
 function tintRGB(props: Tint): RGB {
-  let { amount, rgb: { r, g, b }} = props
+  let { amount, rgb: { r, g, b } } = props
 
   const getColorTransformation = (number: number): number => (number * (100 + amount)) / 100
 
@@ -26,27 +40,27 @@ function tintRGB(props: Tint): RGB {
   g = g < 1 ? g : 1;
   b = b < 1 ? b : 1;
 
-  return { r, g, b}
+  return { r, g, b }
 }
 
-export function getTextColorsFromRGB(props: RGB): RGB[] {
-  const { r, g, b} = props
+// export function getTextColorsFromRGB(props: RGB): RGB[] {
+//   const { r, g, b} = props
 
-  let C, L;
-  C = [r, g, b];
-  C = C.map(i => {
-    if (i <= 0.03928) {
-      return i / 12.92;
-    } else {
-      return Math.pow((i + 0.055) / 1.055, 2.4);
-    }
-  });
+//   let C, L;
+//   C = [r, g, b];
+//   C = C.map(i => {
+//     if (i <= 0.03928) {
+//       return i / 12.92;
+//     } else {
+//       return Math.pow((i + 0.055) / 1.055, 2.4);
+//     }
+//   });
 
-  L = 0.2126 * C[0] + 0.7152 * C[1] + 0.0722 * C[2];
+//   L = 0.2126 * C[0] + 0.7152 * C[1] + 0.0722 * C[2];
 
-  if (L > 0.179) {
-    return [ tintRGB({ rgb: props, amount: -80 }) ];
-  } else {
-    return [ white ];
-  }
-}
+//   if (L > 0.179) {
+//     return [ tintRGB({ rgb: props, amount: -80 }) ];
+//   } else {
+//     return [ white ];
+//   }
+// }

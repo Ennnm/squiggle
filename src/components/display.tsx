@@ -6,8 +6,6 @@ import { useState } from 'preact/hooks'
 import React from 'react';
 
 function display({ screenMode, color, fontSet }: any) {
-  console.log('display')
-  console.log(screenMode);
   const {backgroundColor, textColor, stroke} = screenMode
 
   const buttonStyle = {

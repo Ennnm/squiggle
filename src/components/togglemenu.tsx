@@ -6,7 +6,7 @@ import { useState } from 'preact/hooks'
 import React from 'react';
 
 function togglemenu({screenMode, setScreenMode, color, setColor, fontSet, setFontSet}:any) {
-  const [coreColor, setCoreColor] = useState('#88e0af');
+  // const [coreColor, setCoreColor] = useState('#88e0af');
 
   const selectDarkMode = () => {
     setScreenMode(screenModeColor.dark)
@@ -19,7 +19,6 @@ function togglemenu({screenMode, setScreenMode, color, setColor, fontSet, setFon
   }
 
   const changeColor = (e: any) => {
-    setCoreColor(e.target.value)
     setColor(e.target.value)
     console.log(`changed color to ${e.target.value}`)
   }
@@ -56,10 +55,10 @@ function togglemenu({screenMode, setScreenMode, color, setColor, fontSet, setFon
       <div className={styles['menu-row']}>
         <span>Core Color</span>
         <div className={styles['button-container']}>
-          <button style={{backgroundColor: coreColor, border: '1.5px solid black'}} className={`${styles['square-button']}`} />
+          <button style={{backgroundColor: color, border: '1.5px solid black'}} className={`${styles['square-button']}`} />
           <input
             type="text"
-            value={coreColor}
+            value={color}
             className={styles.input}
             onChange={changeColor}
           />

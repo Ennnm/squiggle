@@ -36,7 +36,7 @@ export function OutputPreferences() {
         profileImages: new Array<Uint8Array>
     })
     const [screenMode, setScreenMode]= useState(screenModeColor.light)
-    const [color, setColor]= useState('')
+    const [color, setColor]= useState('#88e0af')
     const [fontSet, setFontSet]= useState(FontSets.sanSerif)
 
     const toggleMenuProps = {

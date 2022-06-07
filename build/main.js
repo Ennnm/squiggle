@@ -983,7 +983,7 @@
   function fontsList() {
     return Object.values(fonts);
   }
-  var fonts;
+  var fonts, FontSets;
   var init_fonts = __esm({
     "src/lib/fonts.ts"() {
       fonts = {
@@ -991,6 +991,23 @@
         "interBold": { family: "Inter", style: "Bold" },
         "notoSerif": { family: "Noto Serif", style: "Regular" },
         "ibmPlexMono": { family: "IBM Plex Mono", style: "Regular" }
+      };
+      FontSets = {
+        "sanSerif": {
+          "name": "sanSerif",
+          "heading": fonts.interBold,
+          "body": fonts.inter
+        },
+        "serif": {
+          "name": "serif",
+          "heading": fonts.notoSerif,
+          "body": fonts.inter
+        },
+        "mono": {
+          "name": "mono",
+          "heading": fonts.ibmPlexMono,
+          "body": fonts.inter
+        }
       };
     }
   });

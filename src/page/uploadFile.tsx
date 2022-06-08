@@ -1,24 +1,15 @@
 import {
-    Button,
     Container,
     VerticalSpace,
-    Text
 } from '@create-figma-plugin/ui'
-import { emit } from '@create-figma-plugin/utilities'
 import { ComponentChildren, h } from 'preact'
-import { useCallback, useState, useEffect, StateUpdater } from 'preact/hooks'
+import { StateUpdater } from 'preact/hooks'
 
-import { doc, collection, query, where, onSnapshot } from "firebase/firestore";
-import { db } from '../../config/storage_initialize'
 
-import imagePlaceholder from '../assets/imagePlaceholder.png'
-import tristan from '../assets/tristan.jpg'
-import dom from '../assets/dom.jpg'
-import en from '../assets/en.jpg'
-import { loadImageAssets } from '../lib/image'
 import styles from '../styles.css'
-import { AcceptedFileTypes } from '../components/dropzone'
 import { pageIndex as pages } from '../page/pageIndex'
+import { UploadFileButton } from '../components/uploadFileButton'
+import FileUploadGraphic from '../components/fileUploadGraphic'
 
 
 export declare type ButtonProps = {
@@ -28,38 +19,22 @@ export declare type ButtonProps = {
 
 export function UploadFile(props: any) {
     const { setPageIndex } = props
+    const handleClick = () => {
+        setPageIndex(pages.outputPreference);
+    }
 
-    const [imageFile, setImageFile] = useState()
-    const [imgAssets, setImgAssets] = useState({
-        placeholderImage: new Uint8Array,
-        profileImages: new Array<Uint8Array>
-    })
-
-
-
-    // may not need dependency to work
-    const handleClick = useCallback(
-        async function () {
-
-            setPageIndex(pages.outputPreference)
-        },
-        []
-    )
     return (
         <Container>
-            <VerticalSpace space="small" />
-            <div class={styles.container}>
-                <AcceptedFileTypes />
+            <div className={styles['center-column']}>
+                <VerticalSpace space="extraLarge" />
+                <body className={`${styles.openSans}`} style={{ fontSize: 10, lineHeight: "300%" }}>Squiggle</body>
+                <FileUploadGraphic />
+                <VerticalSpace space="extraLarge" />
+                <body className={`${styles.openSans}`} style={{ fontSize: 12, lineHeight: "175%" }}>Drop your sketch here, or browse</body>
+                <body className={`${styles.openSans}`} style={{ fontSize: 10, color: "#7F7F7F" }}>Supports: JPG, JPEG2000, PNG</body>
+                <VerticalSpace space="large" />
+                <UploadFileButton handleClick={handleClick} />
             </div>
-            <Button fullWidth onClick={handleClick}>
-                Browse files
-            </Button>
-            <VerticalSpace space="small" />
-            <canvas id="canvas"></canvas>
-            <img id='imagePlaceholder' src={imagePlaceholder} hidden></img>
-            <img id='tristan' src={tristan} hidden></img>
-            <img id='en' src={en} hidden></img>
-            <img id='dom' src={dom} hidden></img>
         </Container>
     )
 }

@@ -29,8 +29,9 @@ export interface FrameProperties{
   color? : string,
   opacity? :number,
   cornerRadius?: number,
-  stroke?: number
-  strokeColor?: string
+  stroke?: number,
+  strokeColor?: string,
+  clipsContent?: boolean
 }
 
 export interface TextProperties{

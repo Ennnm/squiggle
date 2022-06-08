@@ -4,7 +4,7 @@ import { FileUploadDropzone, Text, VerticalSpace } from '@create-figma-plugin/ui
 import { v4 as uuidv4 } from 'uuid'
 import { ref, uploadBytes } from "firebase/storage"
 import { storage } from "../../config/storage_initialize"
-import React from 'react';
+import styles from '../styles.css';
 
 
 export const AcceptedFileTypes = function () {
@@ -34,10 +34,12 @@ export const AcceptedFileTypes = function () {
 
     }
     return (
-        <FileUploadDropzone acceptedFileTypes={acceptedFileTypes} onSelectedFiles={handleSelectedFiles} >
-            <Text align='center' muted >
-                Max size: 30mb
-            </Text>
+            // <div class={styles.dropzone}>
+        <FileUploadDropzone  class={styles.dropzone} acceptedFileTypes={acceptedFileTypes} onSelectedFiles={handleSelectedFiles} >
+                <Text align='center' muted >
+                    Max size: 30mb
+                </Text>
         </FileUploadDropzone>
+            // </div>
     )
 }

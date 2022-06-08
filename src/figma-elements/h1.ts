@@ -7,7 +7,8 @@ export function h1Element(data: BoundingBox, screenMode: any, fontSet: any): Sce
     const height = data.artBoardHeight * (data.yMax - data.yMin)
 
     const frameProperties = {
-        stroke: 1
+        stroke: 1,
+        clipsContent:false
     }
 
     const frame: FrameNode = frameElement(data, frameProperties)

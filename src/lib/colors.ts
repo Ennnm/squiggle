@@ -2,8 +2,7 @@ import hexRgb from "hex-rgb";
 
 export const black = "#000000"
 export const white = "#FFFFFF"
-// export const black = { r: 0, b: 0, g: 0 }
-// export const white = { r: 1, b: 1, g: 1 }
+
 export function getRGBFromHex(hex: string): RGB {
   const rgbaColor = hexRgb(hex)
   const rgbColor = {

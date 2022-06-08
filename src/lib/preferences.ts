@@ -1,7 +1,3 @@
-// export enum ScreenMode {
-//     light,
-//     dark
-// }
 export const screenColor: { [name: string]: string } = {
     'black': "#000000",
     'white': "#FFFFFF",

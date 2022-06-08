@@ -193,7 +193,7 @@
   });
 
   // src/figma-elements/frame.ts
-  function frameElement(data, { color = white, opacity = 0, cornerRadius = 0, stroke = 0, strokeColor = black }) {
+  function frameElement(data, { color = white, opacity = 0, cornerRadius = 0, stroke = 0, strokeColor = black, clipsContent = true }) {
     const frame = figma.createFrame();
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
@@ -208,7 +208,7 @@
     frame.strokes = [{ type: "SOLID", color: rgbStrokeColor, opacity }];
     frame.effects = [];
     frame.name = classMap[data.classType].name;
-    frame.clipsContent = true;
+    frame.clipsContent = clipsContent;
     frame.cornerRadius = cornerRadius;
     frame.layoutMode = "HORIZONTAL";
     return frame;
@@ -247,7 +247,8 @@
     const width = data.artBoardWidth * (data.xMax - data.xMin);
     const height = data.artBoardHeight * (data.yMax - data.yMin);
     const frameProperties = {
-      stroke: 1
+      stroke: 1,
+      clipsContent: false
     };
     const frame = frameElement(data, frameProperties);
     console.log(screenMode);
